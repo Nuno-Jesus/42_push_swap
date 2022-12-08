@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:09:41 by ncarvalh          #+#    #+#             */
-/*   Updated: 2022/12/04 04:33:30 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2022/12/08 00:02:30 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,28 +20,28 @@
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <fcntl.h>
-# include "libft.h"
+
+# include "../libft/libft.h"
 
 typedef struct s_stack
 {
-	size_t	capacity;
 	size_t	size;
-	t_list	*content;
+	size_t	capacity;
+	int		*array;
 }t_stack;
 
 //! GENERIC STACK FUNCTIONS
 
 t_stack	*ft_stknew(size_t capacity);
 
-int		ft_stkfull(t_stack *stack);
+void	ft_stkpush(t_stack *stack, int n);
 
-int		ft_stkempty(t_stack *stack);
+int		ft_stkpop(t_stack *stack);
 
-void	ft_stkpush(t_stack *stack, t_list *node);
+void	ft_stkdel(t_stack **stack);
 
-t_list	*ft_stkpop(t_stack *stack);
+void	ft_stkprint(t_stack *stack);
 
-void	ft_stkclear(t_stack *stack);
 
 //! SUBJECT OPERATIONS
 

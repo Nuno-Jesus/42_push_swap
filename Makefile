@@ -23,9 +23,9 @@ DEPS = includes
 SRCS = .
 
 #! Files
-TARGET = 
+TARGET = main.o srcs/stack.o
 NAME = push_swap
-PRINTF = ft_printf/libftprintf.a
+#PRINTF = ft_printf/libftprintf.a
 LIBFT = libft/libft.a
 
 #! Rules
@@ -33,21 +33,21 @@ LIBFT = libft/libft.a
 all: $(NAME)
 
 $(NAME): $(TARGET)
-	@echo "[${CYAN}Compiling${RESET}] ${GREEN}ft_printf${RESET}"
-	@make $(MKFLAGS) -C ft_printf
-	$(CC) $(CFLAGS) $(TARGET) $(PRINTF) $(LIBFT) -o $(NAME) -I $(DEPS)
+	@echo "[${CYAN}Compiling${RESET}] ${GREEN}libft${RESET}"
+	@make bonus $(MKFLAGS) -C libft
+	$(CC) $(CFLAGS) $(TARGET) $(LIBFT) -o $(NAME) -I $(DEPS)
 
 %.o : %.c 
 	$(CC) $(CFLAGS) -c $< -o $@ -I $(DEPS)
 
 clean:
-	@echo "[${CYAN}Cleaning${RESET}] ${GREEN}push_swap *.o${RESET}"
-	@make clean $(MKFLAGS) -C ft_printf
+	@echo "[${CYAN}Cleaning${RESET}] ${GREEN}*.o${RESET}"
+	@make clean $(MKFLAGS) -C libft
 	@$(RM) $(TARGET)
 
 fclean: clean
-	@make fclean $(MKFLAGS) -C ft_printf
-	@$(RM) $(CLIENT) $(SERVER) $(CLIENT_BONUS) $(SERVER_BONUS)
+	@make fclean $(MKFLAGS) -C libft
+	@$(RM) $(NAME)
 
 bonus: all
 
