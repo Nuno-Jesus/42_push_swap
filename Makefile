@@ -23,7 +23,7 @@ DEPS = includes
 SRCS = .
 
 #! Files
-TARGET = main.o srcs/stack.o srcs/operations_1.o srcs/operations_2.o
+TARGET = main.o srcs/stack.o srcs/operations_1.o srcs/operations_2.o srcs/state.o
 NAME = push_swap
 PRINTF = ft_printf
 LIBFT = libft
@@ -34,19 +34,19 @@ all: $(NAME)
 
 $(NAME): $(TARGET)
 	@echo "[${CYAN}Compiling${RESET}] ${GREEN}ft_printf${RESET}"
-	@make bonus $(MKFLAGS) -C $(PRINTF)
-	$(CC) $(CFLAGS) $(TARGET) $(PRINTF)/libftprintf.a -o $(NAME) -I $(DEPS)
+	@make bonus $(MKFLAGS) -C $(LIBFT)
+	$(CC) $(CFLAGS) $(TARGET) $(LIBFT)/libft.a -o $(NAME) -I $(DEPS)
 
 %.o : %.c 
 	$(CC) $(CFLAGS) -c $< -o $@ -I $(DEPS)
 
 clean:
 	@echo "[${CYAN}Cleaning${RESET}] ${GREEN}*.o${RESET}"
-	@make clean $(MKFLAGS) -C $(PRINTF)
+	@make clean $(MKFLAGS) -C $(LIBFT)
 	@$(RM) $(TARGET)
 
 fclean: clean
-	@make fclean $(MKFLAGS) -C $(PRINTF)
+	@make fclean $(MKFLAGS) -C $(LIBFT)
 	@$(RM) $(NAME)
 
 bonus: all
