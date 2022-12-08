@@ -1,49 +1,54 @@
 #! Colors
-RESET = \033[0m       # Text Reset
-BLACK = \033[1;30m       # Black
-RED = \033[1;31m         # Red
-GREEN = \033[1;32m       # Green
-YELLOW = \033[1;33m      # Yellow
-BLUE = \033[1;34m       # Blue
-PURPLE = \033[1;35m     # Purple
-CYAN = \033[1;36m        # Cyan
-WHITE = \033[1;37m       # White
+RESET 	= \033[0m
+BLACK 	= \033[1;30m
+RED 	= \033[1;31m
+GREEN 	= \033[1;32m
+YELLOW 	= \033[1;33m
+BLUE 	= \033[1;34m
+PURPLE 	= \033[1;35m
+CYAN 	= \033[1;36m
+WHITE 	= \033[1;37m
 
 #! Commands
-CC = cc
-RM = rm -f
-AR = ar -rc
+CC 		= cc
+RM 		= rm -f
+AR 		= ar -rcs
 
 #! Flags
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS 	= -Wall -Wextra -Werror
 MKFLAGS = --no-print-directory
 
 #! Folders
-DEPS = includes
-SRCS = .
+DEPS 	= includes
+SRCS 	= srcs
+OBJS 	= objects
+LIBFT 	= libft
 
 #! Files
-TARGET = main.o srcs/stack.o srcs/operations_1.o srcs/operations_2.o srcs/state.o
-NAME = push_swap
-PRINTF = ft_printf
-LIBFT = libft
+TARGET 	= main.o stack.o operations_1.o operations_2.o state.o
+NAME 	= push_swap
+OBJECTS = $(addprefix $(OBJS)/, $(TARGET))
 
 #! Rules
 
 all: $(NAME)
 
 $(NAME): $(TARGET)
-	@echo "[${CYAN}Compiling${RESET}] ${GREEN}ft_printf${RESET}"
 	@make bonus $(MKFLAGS) -C $(LIBFT)
-	$(CC) $(CFLAGS) $(TARGET) $(LIBFT)/libft.a -o $(NAME) -I $(DEPS)
+	@echo "[$(CYAN)Compiled$(RESET)] $(GREEN)libft$(RESET)"
 
-%.o : %.c 
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(DEPS)
+	$(CC) $(CFLAGS) $(OBJECTS) $(LIBFT)/libft.a -o $(NAME) -I $(DEPS)
+	@echo "[$(CYAN)Linked$(RESET)] $(GREEN)push_swap$(RESET)"
+
+%.o : $(SRCS)/%.c 
+	@mkdir -p $(OBJS)
+	@$(CC) $(CFLAGS) -c $< -o $(OBJS)/$@ -I $(DEPS)
+	@echo "[$(CYAN)Compiled$(RESET)] $(CFLAGS) $(GREEN)$<$(RESET)"
 
 clean:
-	@echo "[${CYAN}Cleaning${RESET}] ${GREEN}*.o${RESET}"
 	@make clean $(MKFLAGS) -C $(LIBFT)
-	@$(RM) $(TARGET)
+	@$(RM) $(OBJECTS)
+	@echo "[$(CYAN)Cleaned$(RESET)] $(GREEN)*.o$(RESET)"
 
 fclean: clean
 	@make fclean $(MKFLAGS) -C $(LIBFT)

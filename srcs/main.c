@@ -6,13 +6,13 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2022/12/08 02:26:29 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2022/12/08 04:12:10 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/stack.h"
-#include "includes/state.h"
-#include "includes/operations.h"
+#include "../includes/stack.h"
+#include "../includes/state.h"
+#include "../includes/operations.h"
 
 int main(int argc, char **argv)
 {

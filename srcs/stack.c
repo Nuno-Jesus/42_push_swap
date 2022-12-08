@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 23:46:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2022/12/08 02:03:33 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2022/12/08 03:57:28 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,6 @@ void	stack_delete(t_stack **stack)
 	free((*stack)->array);
 	free(*stack);
 	*stack = NULL;
-}
-
-int		ft_stktop(t_stack *stack)
-{
-	return (stack->array[stack->size - 1]);
 }
 
 void	stack_print(t_stack *stack)
