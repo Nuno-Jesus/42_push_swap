@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 23:46:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2022/12/08 00:00:31 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2022/12/08 01:22:12 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,17 @@ t_stack	*ft_stknew(size_t capacity)
 
 void	ft_stkpush(t_stack *stack, int n)
 {
-	stack->array[stack->size++] = n;
+	ft_memmove(stack->array + 1, stack->array, (stack->size++) * sizeof(int));	
+	stack->array[0] = n;
 }
 
 int	ft_stkpop(t_stack *stack)
 {
-	return (stack->array[stack->size--]);
+	int	pop;
+	
+	pop = stack->array[0];
+	ft_memmove(stack->array, stack->array + 1, (--stack->size) * sizeof(int));
+	return (pop);
 }
 
 void	ft_stkdel(t_stack **stack)
@@ -45,6 +50,11 @@ void	ft_stkdel(t_stack **stack)
 	free((*stack)->array);
 	free(*stack);
 	*stack = NULL;
+}
+
+int		ft_stktop(t_stack *stack)
+{
+	return (stack->array[stack->size - 1]);
 }
 
 void	ft_stkprint(t_stack *stack)

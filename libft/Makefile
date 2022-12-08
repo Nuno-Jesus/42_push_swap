@@ -22,16 +22,16 @@ NAME = libft.a
 all: $(NAME)
 
 bonus: $(TARGET) $(BONUS_TARGET)
-	$(AR) $(NAME) $^
+	@$(AR) $(NAME) $^
 
 $(NAME): $(TARGET)
-	$(AR) $(NAME) $^
+	@$(AR) $(NAME) $^
 
 clean:
-	$(RM) $(TARGET) $(BONUS_TARGET)
+	@$(RM) $(TARGET) $(BONUS_TARGET)
 
 fclean: clean
-	$(RM) $(NAME) $(BONUS_TARGET)
+	@$(RM) $(NAME) $(BONUS_TARGET)
 
 re: fclean all
 
