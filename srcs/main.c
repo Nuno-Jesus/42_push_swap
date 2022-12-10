@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2022/12/10 04:49:16 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/10 04:58:16 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,24 +75,32 @@ bool	valid_args(int argc, char **argv)
 	return (true);
 }
 
-/* bool is_sorted(t_stack *stack)
+bool	is_sorted(t_stack *stack)
 {
-	int i;
+	size_t i;
 
 	i = 0;
 	while (i < stack->size - 1)
 	{
-		if 
+		if (stack->array[i] < stack->array[i + 1])
+			return (false);
+		i++;
 	}
-} */
+	return (true);
+}
 
-void stack_fill(t_stack *stack, char **argv, int argc)
+void	stack_fill(t_stack *stack, char **argv, int argc)
 {
 	int	i;
 
 	i = argc - 1;
 	while (i >= 0)
 		stack_push(stack, ft_atoi(argv[i--]));
+}
+
+void	sort(t_state *state)
+{
+	
 }
 //2147483647 -2147483648
 int	main(int argc, char **argv)
@@ -107,9 +115,9 @@ int	main(int argc, char **argv)
 	}
 	state = state_new(stack_new(argc - 1), stack_new(argc - 1));
 	
-	//sort(state);
 	stack_fill(state->a, argv + 1, argc - 1);
 	stack_print(state->a);
+	sort(state);
 	state_delete(state); 
 }
 
