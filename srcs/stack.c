@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 23:46:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2022/12/10 04:35:35 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/10 06:42:06 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ void	stack_delete(t_stack **stack)
 	free((*stack)->array);
 	free(*stack);
 	*stack = NULL;
+}
+
+int	stack_top(t_stack *stack)
+{
+	return (stack->array[stack->size - 1]);
 }
 
 void	stack_print(t_stack *stack)
