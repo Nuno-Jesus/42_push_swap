@@ -21,7 +21,7 @@ MKFLAGS = --no-print-directory
 #! Folders
 DEPS 	= includes
 SRCS 	= srcs
-OBJS 	= objects
+OBJS 	= .
 LIBFT 	= libft
 
 #! Files
@@ -53,6 +53,7 @@ clean:
 fclean: clean
 	@make fclean $(MKFLAGS) -C $(LIBFT)
 	@$(RM) $(NAME)
+	@echo "[$(CYAN)Cleaned$(RESET)] $(GREEN)$(NAME)$(RESET)"
 
 bonus: all
 
