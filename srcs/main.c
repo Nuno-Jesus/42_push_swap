@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2022/12/10 04:36:56 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/10 04:49:16 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,18 +105,11 @@ int	main(int argc, char **argv)
 		write(STDOUT_FILENO, "Error\n", 6);
 		return (EXIT_FAILURE);	
 	}
-	state = state_new(stack_new(5), stack_new(5));
-	
-	
+	state = state_new(stack_new(argc - 1), stack_new(argc - 1));
 	
 	//sort(state);
 	stack_fill(state->a, argv + 1, argc - 1);
 	stack_print(state->a);
-	
-	stack_pop(state->a);
-	printf("\n\t===== TESTING POP =====\n\n");
-	stack_print(state->a);
-	
 	state_delete(state); 
 }
 
@@ -143,52 +136,66 @@ if (!is_number(argv[i]))
 	{
 		stack_push(a, size - i);
 		printf("\n\tSIZE: %ld\n\n", i);
-		stack_print(a);	
+		stack_print(state->a);	
 	} 
 */
 
-/* 	
-	printf("\n\t===== TESTING PUSH B  =====\n\n");
+/*
+printf("\n\t===== TESTING PUSH B  =====\n\n");
 	
 	printf("\n\t===== A =====\n\n");
-	stack_print(a);	
+	stack_print(state->a);	
 	printf("\n\t===== B =====\n\n");
-	stack_print(b);	
+	stack_print(state->b);	
 	
 	push(state->b, state->a, "pb");
 	
 	printf("\n\t===== A =====\n\n");
-	stack_print(a);	
+	stack_print(state->a);	
 	printf("\n\t===== B =====\n\n");
-	stack_print(b);	
+	stack_print(state->b);	
+	
+	printf("\n\t===== TESTING PUSH A  =====\n\n");
+	
+	printf("\n\t===== A =====\n\n");
+	stack_print(state->a);	
+	printf("\n\t===== B =====\n\n");
+	stack_print(state->b);	
+	
+	push(state->a, state->b, "pa");
+	
+	printf("\n\t===== A =====\n\n");
+	stack_print(state->a);	
+	printf("\n\t===== B =====\n\n");
+	stack_print(state->b);	
 	
 	printf("\n\t===== TESTING SWAP A  =====\n\n");
 	
 	printf("\n\t===== A =====\n\n");
-	stack_print(a);	
+	stack_print(state->a);	
 	
 	swap(state->a, "sa");
 	
 	printf("\n\t===== A =====\n\n");
-	stack_print(a);		
+	stack_print(state->a);		
 	 
 	printf("\n\t===== TESTING ROTATE A  =====\n\n");
 	
 	printf("\n\t===== A =====\n\n");
-	stack_print(a);	
+	stack_print(state->a);	
 	
 	rotate(state->a, "ra");
 	
 	printf("\n\t===== A =====\n\n");
-	stack_print(a);	
+	stack_print(state->a);	
 	
 	printf("\n\t===== TESTING REVERSE A  =====\n\n");
 	
 	printf("\n\t===== A =====\n\n");
-	stack_print(a);	
+	stack_print(state->a);	
 	
 	reverse(state->a, "rra");
 	
 	printf("\n\t===== A =====\n\n");
-	stack_print(a);	
- */	
+	stack_print(state->a);	
+*/

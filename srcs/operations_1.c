@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 00:21:01 by ncarvalh          #+#    #+#             */
-/*   Updated: 2022/12/08 02:15:19 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2022/12/10 04:40:26 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ void	swap(t_stack *stack, char *op)
 	
 	if(stack->size <= 1)
 		return ;
-	aux = stack->array[0];
-	stack->array[0] = stack->array[1];
-	stack->array[1] = aux;
+	aux = stack->array[stack->size - 1];
+	stack->array[stack->size - 1] = stack->array[stack->size - 2];
+	stack->array[stack->size - 2] = aux;
 	if (op)
 		ft_putendl_fd(op, STDOUT_FILENO);
 }
