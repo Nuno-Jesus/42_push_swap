@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 23:46:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2022/12/08 03:57:28 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2022/12/10 04:35:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,12 @@ t_stack	*stack_new(size_t capacity)
 
 void	stack_push(t_stack *stack, int n)
 {
-	ft_memmove(stack->array + 1, stack->array, (stack->size++) * sizeof(int));	
-	stack->array[0] = n;
+	stack->array[stack->size++] = n;
 }
 
 int	stack_pop(t_stack *stack)
 {
-	int	pop;
-	
-	pop = stack->array[0];
-	ft_memmove(stack->array, stack->array + 1, (--stack->size) * sizeof(int));
-	return (pop);
+	return (stack->array[(stack->size--) - 1]);
 }
 
 void	stack_delete(t_stack **stack)
@@ -54,6 +49,6 @@ void	stack_delete(t_stack **stack)
 
 void	stack_print(t_stack *stack)
 {
-	for(size_t i = 0; i < stack->size; i++)
+	for(size_t i = stack->size - 1; i < stack->size; i--)
 		printf("%d\n", stack->array[i]);
 }

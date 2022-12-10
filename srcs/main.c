@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2022/12/10 03:57:20 by marvin           ###   ########.fr       */
+/*   Updated: 2022/12/10 04:36:56 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,30 @@ bool	valid_args(int argc, char **argv)
 	}
 	return (true);
 }
+
+/* bool is_sorted(t_stack *stack)
+{
+	int i;
+
+	i = 0;
+	while (i < stack->size - 1)
+	{
+		if 
+	}
+} */
+
+void stack_fill(t_stack *stack, char **argv, int argc)
+{
+	int	i;
+
+	i = argc - 1;
+	while (i >= 0)
+		stack_push(stack, ft_atoi(argv[i--]));
+}
 //2147483647 -2147483648
 int	main(int argc, char **argv)
 {
-	//size_t	size;
-	//t_state	*state;
+	t_state	*state;
 	if (argc < 2)
 		return (EXIT_FAILURE);
 	if (!valid_args(argc - 1, argv + 1))
@@ -86,10 +105,19 @@ int	main(int argc, char **argv)
 		write(STDOUT_FILENO, "Error\n", 6);
 		return (EXIT_FAILURE);	
 	}
-		
-	/* size = ft_atoi(argv[1]);
-	state = state_new(stack_new(size), stack_new(size));
-	state_delete(state); */
+	state = state_new(stack_new(5), stack_new(5));
+	
+	
+	
+	//sort(state);
+	stack_fill(state->a, argv + 1, argc - 1);
+	stack_print(state->a);
+	
+	stack_pop(state->a);
+	printf("\n\t===== TESTING POP =====\n\n");
+	stack_print(state->a);
+	
+	state_delete(state); 
 }
 
 /*
@@ -118,11 +146,7 @@ if (!is_number(argv[i]))
 		stack_print(a);	
 	} 
 */
-/* 
-	stack_pop(a);
-	printf("\n\t===== TESTING POP =====\n\n");
-	stack_print(a);
-*/
+
 /* 	
 	printf("\n\t===== TESTING PUSH B  =====\n\n");
 	
