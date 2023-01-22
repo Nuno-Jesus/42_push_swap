@@ -6,12 +6,11 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 01:58:55 by ncarvalh          #+#    #+#             */
-/*   Updated: 2022/12/08 02:11:23 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/22 16:27:47 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STATE_H
-# define STATE_h
+
 
 #include "../includes/stack.h"
 
@@ -35,4 +34,3 @@ void	state_delete(t_state *state)
 	state = NULL;
 }
 
-#endif

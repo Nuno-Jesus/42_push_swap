@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:09:41 by ncarvalh          #+#    #+#             */
-/*   Updated: 2022/12/10 06:42:23 by marvin           ###   ########.fr       */
+/*   Updated: 2023/01/22 16:38:14 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <fcntl.h>
 # include <stdbool.h>
 
-# include "../libft/libft.h"
+# include "libft.h"
 
 typedef struct s_stack
 {

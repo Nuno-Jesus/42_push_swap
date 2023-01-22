@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2022/12/10 06:56:12 by marvin           ###   ########.fr       */
+/*   Updated: 2023/01/22 16:25:49 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,6 @@ void	stack_fill(t_stack *stack, char **argv, int argc)
 		stack_push(stack, ft_atoi(argv[i--]));
 }
 
-void	sort(t_state *state)
-{
-	return ;
-}
 //2147483647 -2147483648
 int	main(int argc, char **argv)
 {
@@ -117,8 +113,7 @@ int	main(int argc, char **argv)
 	
 	stack_fill(state->a, argv + 1, argc - 1);
 	stack_print(state->a);
-	if (!is_sorted(state->a))
-		sort(state);
+	
 	state_delete(state); 
 }
 
