@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   state.c                                            :+:      :+:    :+:   */
+/*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 01:58:55 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/22 16:40:07 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/01/22 16:59:09 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/01/22 20:10:31 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stack.h"
+#include "push_swap.h"
 
-t_state	*state_new(t_stack *a, t_stack *b)
+t_node	*new_node(int val)
 {
-	t_state	*state;
-	
-	state = (t_state *)malloc(sizeof(t_state));
-	if (!state)
-		return (NULL);
-	state->a = a;
-	state->b = b;
-	return (state);
+	t_node	*node;
+
+	node = ft_calloc(1, sizeof(t_node));
+	if (!node)
+		return (node);
+	node->val = val;
+	return (node);
 }
 
-void	state_delete(t_state *state)
+void	destroy_node(t_node **node)
 {
-	stack_delete(&state->a);
-	stack_delete(&state->b);
-	free(state);
-	state = NULL;
+	if (!node)
+		return ;
+	(*node)->next = NULL;
+	(*node)->prev = NULL;
+	free(*node);
+	*node = NULL;
 }
-

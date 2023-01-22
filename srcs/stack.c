@@ -3,57 +3,73 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 23:46:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2022/12/10 06:42:06 by marvin           ###   ########.fr       */
+/*   Updated: 2023/01/22 20:09:12 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/stack.h"
+#include "push_swap.h"
 
-t_stack	*stack_new(size_t capacity)
+t_stack	*new_stack(size_t capacity)
 {
 	t_stack	*stack;
 
-	stack = malloc(sizeof(t_stack));
+	stack = ft_calloc(1, sizeof(t_stack));
 	if (!stack)
 		return (NULL);
-	stack->size = 0;
 	stack->capacity = capacity;
-	stack->array = malloc(capacity * sizeof(int));
-	if (!stack->array)
-	{
-		free(stack);
-		return (NULL);
-	}	
 	return (stack);
 }
 
-void	stack_push(t_stack *stack, int n)
+void	stack_push(t_stack *stack, int val)
 {
-	stack->array[stack->size++] = n;
+	t_node	*node;
+
+	node = new_node(val);
+	if (!node)
+		return ;
+	if (!stack->head)
+	{
+		stack->head = node;		//Stack head -> node
+		stack->head->next = node;				//Replace stack head		
+		stack->head->prev = node;				//Replace stack head		
+		stack->size++;
+		return ;
+	}
+	node->next = stack->head;		//Node -> stack head
+	stack->head->prev->next = node;	//Last element -> node
+	node->prev = stack->head->prev;	//Node -> Last element
+	stack->head->prev = node;		//Stack head -> node
+	stack->head = node;				//Replace stack head
+	stack->size++;
 }
 
+/* 
 int	stack_pop(t_stack *stack)
 {
-	return (stack->array[(stack->size--) - 1]);
+
 }
 
 void	stack_delete(t_stack **stack)
 {
-	free((*stack)->array);
-	free(*stack);
-	*stack = NULL;
+	
 }
 
 int	stack_top(t_stack *stack)
 {
-	return (stack->array[stack->size - 1]);
+
 }
+*/
 
 void	stack_print(t_stack *stack)
 {
-	for(size_t i = stack->size - 1; i < stack->size; i--)
-		printf("%d\n", stack->array[i]);
-}
+	t_node *aux;
+
+	aux = stack->head;
+	for (size_t i = 0; i < stack->size; i++, aux = aux->next)
+		printf("%d->", aux->val);
+	printf("NULL\n");
+
+} 

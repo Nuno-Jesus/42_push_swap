@@ -6,13 +6,11 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/22 16:25:49 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/22 20:09:41 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/stack.h"
-#include "../includes/state.h"
-#include "../includes/operations.h"
+#include "push_swap.h"
 
 bool	is_number(char *arg)
 {
@@ -74,7 +72,7 @@ bool	valid_args(int argc, char **argv)
 	}
 	return (true);
 }
-
+/* 
 bool	is_sorted(t_stack *stack)
 {
 	size_t i;
@@ -88,7 +86,8 @@ bool	is_sorted(t_stack *stack)
 	}
 	return (true);
 }
-
+ */
+/* 
 void	stack_fill(t_stack *stack, char **argv, int argc)
 {
 	int	i;
@@ -97,11 +96,22 @@ void	stack_fill(t_stack *stack, char **argv, int argc)
 	while (i >= 0)
 		stack_push(stack, ft_atoi(argv[i--]));
 }
-
+ */
 //2147483647 -2147483648
+
+void	destroy_state(t_state *state)
+{
+	if (state->a)
+		// destroy_stack(&state->a);
+	if (state->b)
+		// destroy_stack(&state->b);
+	return ;
+}
+
 int	main(int argc, char **argv)
 {
-	t_state	*state;
+	t_state	state;
+	
 	if (argc < 2)
 		return (EXIT_FAILURE);
 	if (!valid_args(argc - 1, argv + 1))
@@ -109,97 +119,13 @@ int	main(int argc, char **argv)
 		write(STDOUT_FILENO, "Error\n", 6);
 		return (EXIT_FAILURE);	
 	}
-	state = state_new(stack_new(argc - 1), stack_new(argc - 1));
-	
-	stack_fill(state->a, argv + 1, argc - 1);
-	stack_print(state->a);
-	
-	state_delete(state); 
+	state.a = new_stack(argc - 1);
+	state.b = new_stack(argc - 1);
+	if (!state.a || state.b)
+		destroy_state(&state);
+
+	for (int i = 0; i < argc - 1; i++)
+		stack_push(state.a, atoi(argv[i + 1]));
+	stack_print(state.a);
+	return (0);
 }
-
-/*
-if (!is_number(argv[i]))
-	{
-		printf("\"%s\" is not a number\n", argv[i]);
-		return (false);
-	}
-	if (!is_int(argv[i]))
-	{
-		printf("\"%s\" is not an int\n", argv[i]);
-		return (false);
-	}
-	if (is_duplicated(argv, i))
-	{
-		printf("\"%s\" is duplicated\n", argv[i]);
-		return (false);
-	}
-*/
-
-/* 
-	for(size_t i = 0; i < size; i++)
-	{
-		stack_push(a, size - i);
-		printf("\n\tSIZE: %ld\n\n", i);
-		stack_print(state->a);	
-	} 
-*/
-
-/*
-printf("\n\t===== TESTING PUSH B  =====\n\n");
-	
-	printf("\n\t===== A =====\n\n");
-	stack_print(state->a);	
-	printf("\n\t===== B =====\n\n");
-	stack_print(state->b);	
-	
-	push(state->b, state->a, "pb");
-	
-	printf("\n\t===== A =====\n\n");
-	stack_print(state->a);	
-	printf("\n\t===== B =====\n\n");
-	stack_print(state->b);	
-	
-	printf("\n\t===== TESTING PUSH A  =====\n\n");
-	
-	printf("\n\t===== A =====\n\n");
-	stack_print(state->a);	
-	printf("\n\t===== B =====\n\n");
-	stack_print(state->b);	
-	
-	push(state->a, state->b, "pa");
-	
-	printf("\n\t===== A =====\n\n");
-	stack_print(state->a);	
-	printf("\n\t===== B =====\n\n");
-	stack_print(state->b);	
-	
-	printf("\n\t===== TESTING SWAP A  =====\n\n");
-	
-	printf("\n\t===== A =====\n\n");
-	stack_print(state->a);	
-	
-	swap(state->a, "sa");
-	
-	printf("\n\t===== A =====\n\n");
-	stack_print(state->a);		
-	 
-	printf("\n\t===== TESTING ROTATE A  =====\n\n");
-	
-	printf("\n\t===== A =====\n\n");
-	stack_print(state->a);	
-	
-	rotate(state->a, "ra");
-	
-	printf("\n\t===== A =====\n\n");
-	stack_print(state->a);	
-	
-	printf("\n\t===== TESTING REVERSE A  =====\n\n");
-	
-	printf("\n\t===== A =====\n\n");
-	stack_print(state->a);	
-	
-	reverse(state->a, "rra");
-	
-	printf("\n\t===== A =====\n\n");
-	stack_print(state->a);	
-*/

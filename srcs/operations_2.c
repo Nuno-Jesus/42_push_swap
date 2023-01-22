@@ -6,12 +6,12 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 00:58:22 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/22 16:39:52 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/22 16:57:00 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "operations.h"
-
+#include "push_swap.h"
+/* 
 void	rotate(t_stack *stack, char *op)
 {
 	int	top;
@@ -51,3 +51,4 @@ void	rrr(t_state *state)
 	reverse(state->b, NULL);
 	ft_putendl_fd("rrr", STDOUT_FILENO);
 }
+ */

@@ -6,12 +6,12 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 00:21:01 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/22 16:39:58 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/22 19:28:30 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "operations.h"
-
+#include "push_swap.h"
+/* 
 void	swap(t_stack *stack, char *op)
 {
 	int aux;
@@ -40,3 +40,4 @@ void	push(t_stack *dest, t_stack *src, char *op)
 		ft_putendl_fd(op, STDOUT_FILENO);
 	}
 }
+ */

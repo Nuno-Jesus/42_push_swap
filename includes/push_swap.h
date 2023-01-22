@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:40:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/22 16:53:07 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/22 19:25:12 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ typedef struct	s_state
 
 //!-------------------------------------------------
 
-t_stack	*stack_new(size_t capacity);
+t_stack	*new_stack(size_t capacity);
 
-void	stack_push(t_stack *stack, int n);
+void	stack_push(t_stack *stack, int val);
 
 int		stack_pop(t_stack *stack);
 
