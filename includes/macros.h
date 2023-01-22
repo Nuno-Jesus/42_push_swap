@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.h                                       :+:      :+:    :+:   */
+/*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/08 00:05:11 by ncarvalh          #+#    #+#             */
-/*   Updated: 2022/12/08 01:24:34 by ncarvalh         ###   ########.fr       */
+/*   Created: 2023/01/22 16:46:26 by ncarvalh          #+#    #+#             */
+/*   Updated: 2023/01/22 16:49:10 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef OPERATIONS_H
-# define OPERATIONS_H
+#ifndef MACROS_H
+# define MACROS_H
 
-# include "stack.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <limits.h>
+# include <sys/stat.h>
+# include <sys/types.h>
+# include <fcntl.h>
+# include <stdbool.h>
 
-void	swap(t_stack *stack, char *op);
-void	ss(t_state *state);
-
-void	push(t_stack *dest, t_stack *src, char *op);
-
-void	rotate(t_stack *stack, char *op);
-void	rr(t_state *state);
-
-void 	reverse(t_stack *stack, char *op);
-void	rrr(t_state *state);
+typedef enum e_operation
+{
+	SA,
+	SB,
+	SS,
+	RA,
+	RB,
+	RR,
+	RRA,
+	RRB,
+	RRR
+}			t_operation;
 
 #endif

@@ -6,13 +6,11 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 01:58:55 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/22 16:27:47 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/22 16:40:07 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
-#include "../includes/stack.h"
+#include "stack.h"
 
 t_state	*state_new(t_stack *a, t_stack *b)
 {
