@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 23:46:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/22 20:09:12 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/24 02:32:54 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_stack	*new_stack(size_t capacity)
 	return (stack);
 }
 
-void	stack_push(t_stack *stack, int val)
+void	push(t_stack *stack, int val)
 {
 	t_node	*node;
 
@@ -52,10 +52,6 @@ int	stack_pop(t_stack *stack)
 
 }
 
-void	stack_delete(t_stack **stack)
-{
-	
-}
 
 int	stack_top(t_stack *stack)
 {
@@ -68,8 +64,36 @@ void	stack_print(t_stack *stack)
 	t_node *aux;
 
 	aux = stack->head;
+	printf("Head -> Bottom\n");
 	for (size_t i = 0; i < stack->size; i++, aux = aux->next)
 		printf("%d->", aux->val);
-	printf("NULL\n");
+	puts("");
+	
+	aux = stack->head->prev;
+	printf("Bottom -> Head\n");
+	for (size_t i = 0; i < stack->size; i++, aux = aux->prev)
+		printf("%d<-", aux->val);
+	puts("");
 
 } 
+
+void	destroy_stack(t_stack **stack)
+{
+	t_node	*aux;
+	
+	aux = (*stack)->head;
+	if (!(*stack))
+		return ;
+	if ((*stack)->head)
+	{
+		(*stack)->head->prev->next = NULL;
+		while (aux)
+		{
+			(*stack)->head = (*stack)->head->next;
+			destroy_node(&aux);
+			aux = (*stack)->head;
+		}
+	}
+	free(*stack);
+	*stack = NULL;			
+}

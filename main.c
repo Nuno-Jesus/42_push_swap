@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/22 20:09:41 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/24 02:18:22 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	stack_fill(t_stack *stack, char **argv, int argc)
 
 	i = argc - 1;
 	while (i >= 0)
-		stack_push(stack, ft_atoi(argv[i--]));
+		push(stack, ft_atoi(argv[i--]));
 }
  */
 //2147483647 -2147483648
@@ -102,9 +102,9 @@ void	stack_fill(t_stack *stack, char **argv, int argc)
 void	destroy_state(t_state *state)
 {
 	if (state->a)
-		// destroy_stack(&state->a);
+		destroy_stack(&state->a);
 	if (state->b)
-		// destroy_stack(&state->b);
+		destroy_stack(&state->b);
 	return ;
 }
 
@@ -121,11 +121,12 @@ int	main(int argc, char **argv)
 	}
 	state.a = new_stack(argc - 1);
 	state.b = new_stack(argc - 1);
-	if (!state.a || state.b)
+	if (!state.a || !state.b)
 		destroy_state(&state);
 
 	for (int i = 0; i < argc - 1; i++)
-		stack_push(state.a, atoi(argv[i + 1]));
+		push(state.a, atoi(argv[i + 1]));
 	stack_print(state.a);
+	destroy_state(&state);
 	return (0);
 }

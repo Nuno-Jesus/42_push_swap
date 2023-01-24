@@ -15,7 +15,7 @@ RM = rm -f
 AR = ar -rcs
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FLAGS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-CFLAGS		= -Wall -Wextra -Werror 
+CFLAGS		= -Wall -Wextra -Werror
 MKFLAGS		= --no-print-directory
 LIBFT		= -L ./libft -lft
 GNL			= -L ./get_next_line -lgnl
@@ -28,7 +28,7 @@ LIBFT_PATH	= libft
 GNL_PATH	= get_next_line
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FILES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-OBJS			=  stack.o operations_1.o operations_2.o node.o
+OBJS			= stack.o operations_1.o operations_2.o node.o
 OBJS_BONUS		= 
 NAME			= push_swap
 NAME_BONUS		= checker

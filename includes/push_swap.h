@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:40:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/22 19:25:12 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/24 02:09:16 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,30 +40,30 @@ typedef struct	s_state
 
 t_stack	*new_stack(size_t capacity);
 
-void	stack_push(t_stack *stack, int val);
+void	push(t_stack *stack, int val);
 
 int		stack_pop(t_stack *stack);
 
-void	stack_delete(t_stack **stack);
+void	destroy_stack(t_stack **stack);
 
 int		stack_top(t_stack *stack);
 
 void	stack_print(t_stack *stack);
 
 //!-------------------------------------------------
-void	swap(t_stack *stack, char *op);
+// void	swap(t_stack *stack, char *op);
 
-void	ss(t_state *state);
+// void	ss(t_state *state);
 
-void	push(t_stack *dest, t_stack *src, char *op);
+// void	push(t_stack *dest, t_stack *src, char *op);
 
-void	rotate(t_stack *stack, char *op);
+// void	rotate(t_stack *stack, char *op);
 
-void	rr(t_state *state);
+// void	rr(t_state *state);
 
-void 	reverse(t_stack *stack, char *op);
+// void 	reverse(t_stack *stack, char *op);
 
-void	rrr(t_state *state);
+// void	rrr(t_state *state);
 
 //!-------------------------------------------------
 
