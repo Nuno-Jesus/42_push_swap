@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 23:46:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/24 02:32:54 by marvin           ###   ########.fr       */
+/*   Updated: 2023/01/24 14:03:55 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,17 @@ void	push(t_stack *stack, int val)
 	stack->size++;
 }
 
-/* 
-int	stack_pop(t_stack *stack)
+t_node*	pop(t_stack *stack)
 {
-
+	t_node	*aux;
+	
+	if (!stack)
+		return (NULL);
+	if (!stack->head)
+		return (NULL);
+	aux = stack->head;
 }
+/* 
 
 
 int	stack_top(t_stack *stack)
@@ -59,7 +65,7 @@ int	stack_top(t_stack *stack)
 }
 */
 
-void	stack_print(t_stack *stack)
+void	print_stack(t_stack *stack)
 {
 	t_node *aux;
 

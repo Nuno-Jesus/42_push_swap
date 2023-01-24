@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/24 02:18:22 by marvin           ###   ########.fr       */
+/*   Updated: 2023/01/24 02:38:07 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int	main(int argc, char **argv)
 
 	for (int i = 0; i < argc - 1; i++)
 		push(state.a, atoi(argv[i + 1]));
-	stack_print(state.a);
+	print_stack(state.a);
 	destroy_state(&state);
 	return (0);
 }
