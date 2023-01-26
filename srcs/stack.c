@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 23:46:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/26 17:09:59 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:14:54 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,8 @@ t_stack	*new_stack(size_t capacity)
 	return (stack);
 }
 
-void	push(t_stack *stack, int val)
+void	push(t_stack *stack, t_node *node)
 {
-	t_node	*node;
-
-	node = new_node(val);
 	if (!node)
 		return ;
 	if (!stack->head)
@@ -66,14 +63,6 @@ t_node*	pop(t_stack *stack)
 	stack->size--;
 	return (aux);
 }
-/* 
-
-
-int	stack_top(t_stack *stack)
-{
-
-}
-*/
 
 void	print_stack(t_stack *stack)
 {
@@ -82,13 +71,13 @@ void	print_stack(t_stack *stack)
 	aux = stack->head;
 	printf("Head -> Bottom\n");
 	for (size_t i = 0; i < stack->size; i++, aux = aux->next)
-		printf("%d->", aux->val);
+		printf("[%d]\n", aux->val);
 	puts("");
 	
 	aux = stack->head->prev;
 	printf("Bottom -> Head\n");
 	for (size_t i = 0; i < stack->size; i++, aux = aux->prev)
-		printf("%d<-", aux->val);
+		printf("[%d]\n", aux->val);
 	puts("");
 
 } 
