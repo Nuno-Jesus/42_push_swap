@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 23:46:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/24 14:03:55 by marvin           ###   ########.fr       */
+/*   Updated: 2023/01/26 17:09:59 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,19 @@ t_node*	pop(t_stack *stack)
 	
 	if (!stack)
 		return (NULL);
-	if (!stack->head)
+	else if (!stack->head)
 		return (NULL);
 	aux = stack->head;
+	if (stack->size == 1)
+		stack->head = NULL;
+	else 
+	{
+		stack->head->prev->next = stack->head->next; //Put the last element pointing to the one after the head
+		stack->head->next->prev = stack->head->prev; //Put the next head pointing to the last element
+		stack->head = stack->head->next;			 //Promote the next head
+	}
+	stack->size--;
+	return (aux);
 }
 /* 
 

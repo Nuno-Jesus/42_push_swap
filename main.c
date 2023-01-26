@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/24 02:38:07 by marvin           ###   ########.fr       */
+/*   Updated: 2023/01/26 17:10:46 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,12 @@ int	main(int argc, char **argv)
 	for (int i = 0; i < argc - 1; i++)
 		push(state.a, atoi(argv[i + 1]));
 	print_stack(state.a);
+	while (state.a->head)
+	{
+		t_node *aux = pop(state.a);
+		printf("Val: %d\n", aux->val);
+		destroy_node(&aux);
+	}
 	destroy_state(&state);
 	return (0);
 }
