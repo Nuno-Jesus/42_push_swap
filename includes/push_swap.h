@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:40:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/26 17:26:15 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:45:16 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,23 @@ typedef struct	s_state
 
 t_stack	*new_stack(size_t capacity);
 
-void	push(t_stack *stack, t_node *val);
+void	stack_push(t_stack *stack, t_node *val);
 
-t_node*	pop(t_stack *stack);
+t_node*	stack_pop(t_stack *stack);
 
 void	destroy_stack(t_stack **stack);
 
 void	print_stack(t_stack *stack);
 
 //!-------------------------------------------------
+
+void	do_op(t_state *state, t_operation op);
+
 void	swap(t_stack *stack, char *op);
 
 void	ss(t_state *state);
 
-// void	push(t_stack *dest, t_stack *src, char *op);
+void	push(t_stack *src, t_stack *dest, char *op);
 
 // void	rotate(t_stack *stack, char *op);
 

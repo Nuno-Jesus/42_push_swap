@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 00:21:01 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/26 17:26:03 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:45:43 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,12 @@ void	do_op(t_state *state, t_operation op)
 		swap(state->b, "sb");
 	else if (op == SS)
 		ss(state);
-	/* else if (op == RA)
+	else if (op == PA)
+		push(state->b, state->a, "pa");
+	else if (op == PB)
+		push(state->a, state->b, "pb");
+	/* 
+	else if (op == RA)
 		rotate(state->a, "ra");
 	else if (op == RB)
 		rotate(state->b, "rb");
@@ -31,8 +36,10 @@ void	do_op(t_state *state, t_operation op)
 	else if (op == RRB)
 		rev_rotate(state->b, "rrb");
 	else if (op == RRR)
-		rrr(state); */
+		rrr(state); 
+	*/
 }
+
 void	swap(t_stack *stack, char *op)
 {
 	int	aux;
@@ -53,14 +60,10 @@ void	ss(t_state *state)
 	ft_putendl_fd("ss", STDOUT_FILENO);
 }
 
-/* 
-
-void	push(t_stack *dest, t_stack *src, char *op)
+void	push(t_stack *src, t_stack *dest, char *op)
 {
-	if (src->size > 0)
-	{
-		push(dest, pop(src));
-		ft_putendl_fd(op, STDOUT_FILENO);
-	}
+	if (!src->size)
+		return ;	
+	stack_push(dest, stack_pop(src));
+	ft_putendl_fd(op, STDOUT_FILENO);
 }
- */

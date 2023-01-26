@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:46:26 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/22 16:49:10 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:36:27 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef enum e_operation
 	SA,
 	SB,
 	SS,
+	PA,
+	PB,
 	RA,
 	RB,
 	RR,

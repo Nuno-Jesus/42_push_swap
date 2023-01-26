@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/26 17:34:28 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:46:46 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,17 +125,16 @@ int	main(int argc, char **argv)
 		destroy_state(&state);
 
 	for (int i = 0; i < argc - 1; i++)
-	{
-		push(state.a, new_node(atoi(argv[i + 1])));
-		push(state.b, new_node(atoi(argv[i + 1])));
-	}
+		stack_push(state.a, new_node(atoi(argv[i + 1])));
 	
 	print_stack(state.a);
-	// print_stack(state.b);
-	// swap(state.a, "sa");
-	// ss(&state);
+	print_stack(state.b);
+	
+	do_op(&state, PB);
+	do_op(&state, PB);
+	do_op(&state, PB);
 	print_stack(state.a);
-	// print_stack(state.b);
+	print_stack(state.b);
 	destroy_state(&state);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 23:46:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/26 17:30:41 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:40:02 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_stack	*new_stack(size_t capacity)
 	return (stack);
 }
 
-void	push(t_stack *stack, t_node *node)
+void	stack_push(t_stack *stack, t_node *node)
 {
 	if (!node)
 		return ;
@@ -43,7 +43,7 @@ void	push(t_stack *stack, t_node *node)
 	stack->size++;
 }
 
-t_node*	pop(t_stack *stack)
+t_node*	stack_pop(t_stack *stack)
 {
 	t_node	*aux;
 	
