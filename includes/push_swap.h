@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:40:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/26 17:49:35 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:53:42 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ void	rotate(t_stack *stack, char *op);
 
 void	rr(t_state *state);
 
-// void 	reverse(t_stack *stack, char *op);
+void 	reverse(t_stack *stack, char *op);
 
-// void	rrr(t_state *state);
+void	rrr(t_state *state);
 
 //!-------------------------------------------------
 

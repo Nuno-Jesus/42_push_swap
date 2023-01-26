@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/26 17:52:43 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:53:38 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int	main(int argc, char **argv)
 	print_stack(state.a);
 	print_stack(state.b);
 
-	// do_op(&state, RR);
+	do_op(&state, RRA);
 	print_stack(state.a);
 	print_stack(state.b);
 	destroy_state(&state);

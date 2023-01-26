@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 00:21:01 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/26 17:48:00 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:54:49 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,12 @@ void	do_op(t_state *state, t_operation op)
 		rotate(state->b, "rb");
 	else if (op == RR)
 		rr(state);
-	/* 
 	else if (op == RRA)
-		rev_rotate(state->a, "rra");
+		reverse(state->a, "rra");
 	else if (op == RRB)
-		rev_rotate(state->b, "rrb");
+		reverse(state->b, "rrb");
 	else if (op == RRR)
 		rrr(state); 
-	*/
 }
 
 void	swap(t_stack *stack, char *op)
