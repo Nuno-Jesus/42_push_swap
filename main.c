@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/26 17:57:18 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/26 18:09:12 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,16 +89,15 @@ bool	is_sorted(t_stack *stack)
 	return (true);
 }
 
-/* 
 void	stack_fill(t_stack *stack, char **argv, int argc)
 {
 	int	i;
 
 	i = argc - 1;
 	while (i >= 0)
-		push(stack, ft_atoi(argv[i--]));
+		stack_push(stack, new_node(ft_atoi(argv[i--])));
 }
- */
+
 //2147483647 -2147483648
 
 void	destroy_state(t_state *state)
@@ -118,7 +117,7 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (!valid_args(argc - 1, argv + 1))
 	{
-		write(STDOUT_FILENO, "Error\n", 6);
+		ft_putendl_fd("Error", STDOUT_FILENO);
 		return (EXIT_FAILURE);	
 	}
 	state.a = new_stack(argc - 1);
@@ -126,18 +125,8 @@ int	main(int argc, char **argv)
 	if (!state.a || !state.b)
 		destroy_state(&state);
 
-	for (int i = 0; i < argc - 1; i++)
-	{
-		stack_push(state.a, new_node(atoi(argv[i + 1])));
-		// stack_push(state.b, new_node(atoi(argv[i + 1])));
-	}
-	
+	stack_fill(state.a, argv + 1, argc - 1);
 	print_stack(state.a);
-	print_stack(state.b);
-
-	do_op(&state, RRA);
-	print_stack(state.a);
-	print_stack(state.b);
 	destroy_state(&state);
 	return (0);
 }
