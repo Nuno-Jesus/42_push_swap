@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 00:21:01 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/26 17:45:43 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:48:00 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	do_op(t_state *state, t_operation op)
 		push(state->b, state->a, "pa");
 	else if (op == PB)
 		push(state->a, state->b, "pb");
-	/* 
 	else if (op == RA)
 		rotate(state->a, "ra");
 	else if (op == RB)
 		rotate(state->b, "rb");
 	else if (op == RR)
 		rr(state);
+	/* 
 	else if (op == RRA)
 		rev_rotate(state->a, "rra");
 	else if (op == RRB)

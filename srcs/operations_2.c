@@ -6,21 +6,17 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 00:58:22 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/22 16:57:00 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:49:19 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-/* 
+
 void	rotate(t_stack *stack, char *op)
 {
-	int	top;
-	
-	if (stack->size < 2)
+	if (!stack->head)
 		return ;
-	top = stack->array[stack->size - 1];
-	ft_memmove(stack->array + 1, stack->array, (stack->size - 1) * sizeof(int));
-	stack->array[0] = top;
+	stack->head = stack->head->next;
 	if (op)
 		ft_putendl_fd(op, STDOUT_FILENO);
 }
@@ -32,6 +28,7 @@ void	rr(t_state *state)
 	ft_putendl_fd("rr", STDOUT_FILENO);
 }
 
+/* 
 void 	reverse(t_stack *stack, char *op)
 {
 	int	bottom;
