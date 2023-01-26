@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/26 17:53:38 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:57:18 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,21 +72,23 @@ bool	valid_args(int argc, char **argv)
 	}
 	return (true);
 }
-/* 
+
 bool	is_sorted(t_stack *stack)
 {
 	size_t i;
+	t_node	*aux;
 
-	i = 0;
-	while (i < stack->size - 1)
+	i = -1;
+	aux = stack->head;
+	while (++i < stack->size - 1)
 	{
-		if (stack->array[i] < stack->array[i + 1])
+		if (aux->val < aux->next->val)
 			return (false);
-		i++;
+		aux = aux->next;
 	}
 	return (true);
 }
- */
+
 /* 
 void	stack_fill(t_stack *stack, char **argv, int argc)
 {
