@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/26 18:09:12 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/26 18:12:26 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,14 @@ bool	valid_args(int argc, char **argv)
 
 bool	is_sorted(t_stack *stack)
 {
-	size_t i;
+	size_t	i;
 	t_node	*aux;
 
 	i = -1;
 	aux = stack->head;
 	while (++i < stack->size - 1)
 	{
-		if (aux->val < aux->next->val)
+		if (aux->val > aux->next->val)
 			return (false);
 		aux = aux->next;
 	}
@@ -126,6 +126,8 @@ int	main(int argc, char **argv)
 		destroy_state(&state);
 
 	stack_fill(state.a, argv + 1, argc - 1);
+	if (is_sorted(state.a))
+		printf("Stack is sorted\n");				
 	print_stack(state.a);
 	destroy_state(&state);
 	return (0);
