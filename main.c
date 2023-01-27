@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/26 18:12:26 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/27 18:56:02 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,8 @@ int	main(int argc, char **argv)
 
 	stack_fill(state.a, argv + 1, argc - 1);
 	if (is_sorted(state.a))
-		printf("Stack is sorted\n");				
-	print_stack(state.a);
+		printf("Stack is sorted\n");
+	sort(&state);
 	destroy_state(&state);
 	return (0);
 }

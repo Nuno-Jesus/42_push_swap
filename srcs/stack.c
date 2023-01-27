@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 23:46:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/26 17:40:02 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/27 18:55:35 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,16 +64,16 @@ t_node*	stack_pop(t_stack *stack)
 	return (aux);
 }
 
-void	print_stack(t_stack *stack)
+void	print_stack(t_stack *stack, char *name)
 {
 	if (!stack->size)
 		return ;
 	t_node *aux;
-
+	
 	aux = stack->head;
-	printf("Head -> Bottom\n");
+	printf("(%s) Head -> Bottom\n", name);
 	for (size_t i = 0; i < stack->size; i++, aux = aux->next)
-		printf("[%d]\n", aux->val);
+		printf("[%10d] -> [%10d]\n", aux->val, aux->local_min);
 	puts("");
 	/* 
 	aux = stack->head->prev;

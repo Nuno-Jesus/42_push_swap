@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:40:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/27 18:31:52 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/27 18:56:10 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # include <stdbool.h>
 
 # include "libft.h"
+
+# define MAX(a, b) ((a > b) ? (a) : (b))
+# define MIN(a, b) ((a < b) ? (a) : (b))
 
 typedef enum e_operation
 {
@@ -42,6 +45,7 @@ typedef enum e_operation
 typedef struct	s_node
 {
 	int				val;
+	int 			local_min;
 	struct s_node	*next;
 	struct s_node	*prev;	
 }				t_node;
@@ -69,7 +73,7 @@ t_node*	stack_pop(t_stack *stack);
 
 void	destroy_stack(t_stack **stack);
 
-void	print_stack(t_stack *stack);
+void	print_stack(t_stack *stack, char *name);
 
 //!-------------------------------------------------
 
@@ -94,5 +98,11 @@ void	rrr(t_state *state);
 t_node	*new_node(int val);
 
 void	destroy_node(t_node **node);
+
+//!-------------------------------------------------
+
+void	calculate_local_minima(t_stack *a);
+
+void	sort(t_state *state);
 
 #endif
