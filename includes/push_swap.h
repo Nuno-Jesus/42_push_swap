@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:40:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/27 18:56:10 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/29 18:15:59 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 # define MAX(a, b) ((a > b) ? (a) : (b))
 # define MIN(a, b) ((a < b) ? (a) : (b))
+# define BIT(i) (1 << i)
 
 typedef enum e_operation
 {
@@ -61,6 +62,7 @@ typedef struct	s_state
 {
 	t_stack	*a;
 	t_stack	*b;
+	int	local_minima;
 }				t_state;
 
 //!-------------------------------------------------
@@ -101,8 +103,11 @@ void	destroy_node(t_node **node);
 
 //!-------------------------------------------------
 
-void	calculate_local_minima(t_stack *a);
+void	calculate_local_minima(t_state *state);
 
 void	sort(t_state *state);
+
+//!-------------------------------------------------
+bool	is_sorted(t_stack *stack);
 
 #endif

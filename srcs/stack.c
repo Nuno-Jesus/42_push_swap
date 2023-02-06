@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 23:46:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/27 19:33:40 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/01/29 18:38:04 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,14 @@ t_node*	stack_pop(t_stack *stack)
 	return (aux);
 }
 
+void	print_bits(unsigned char n)
+{
+	int i = 1 << 8;
+	
+	while (i >>= 1)
+		(n & i) ? write(1, "1", 1) : write(1, "0", 1);
+}
+
 void	print_stack(t_stack *stack, char *name)
 {
 	if (!stack->size)
@@ -73,7 +81,10 @@ void	print_stack(t_stack *stack, char *name)
 	aux = stack->head;
 	printf("(%s) Head -> Bottom (Size : %zu)\n", name, stack->size);
 	for (size_t i = 0; i < stack->size; i++, aux = aux->next)
-		printf("[%10d] -> [%10d]\n", aux->val, aux->local_min);
+	{
+		print_bits(aux->val);
+		printf(" -> [%d]\n", aux->val);
+	}
 	puts("");
 	/* 
 	aux = stack->head->prev;

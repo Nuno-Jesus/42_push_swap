@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/27 18:56:02 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/06 17:35:35 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ int	main(int argc, char **argv)
 {
 	t_state	state;
 	
+	printf("Number of args: %d\n", argc);
 	if (argc < 2)
 		return (EXIT_FAILURE);
 	if (!valid_args(argc - 1, argv + 1))
@@ -129,6 +130,7 @@ int	main(int argc, char **argv)
 	if (is_sorted(state.a))
 		printf("Stack is sorted\n");
 	sort(&state);
+	print_stack(state.a, "A");
 	destroy_state(&state);
 	return (0);
 }
