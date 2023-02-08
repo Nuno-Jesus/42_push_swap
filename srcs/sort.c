@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 18:34:24 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/08 15:21:41 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/08 17:38:24 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	find_absolute_maximum(t_stack *a)
 		max = MAX(max, a->head->val);
 		a->head = a->head->next;
 	}
-	// printf("Absolute maximum: %d (%d)\n", max, index);
+	printf("Absolute maximum: %d\n", max);
 	return (max);
 }
 
@@ -86,7 +86,6 @@ void	apply_rankings(t_stack *a)
 	while (++i <= a->size)
 	{
 		min = get_next_min(a);
-		printf("prev/current = %ld/%d -> rank %zu\n", prev_min, min->val, i);
 		min->rank = i;
 		prev_min = min->val;
 	}
@@ -95,7 +94,8 @@ void	apply_rankings(t_stack *a)
 void	sort(t_state *state)
 {
 	int bits;
-	size_t	i;
+	int i;
+	int n;
 	int k;
 	// size_t size;
 
@@ -117,17 +117,18 @@ void	sort(t_state *state)
 		if (is_sorted(state->a))
 			break; */
 		i = 0;
-		// printf("Numbers with (1 << %d): %d\n", bits, n);
-		while (i < state->a->size)
+		n = count_numbers_with_0_bit(state->a, k);
+		printf("Numbers with (1 << %d): %d\n", bits, n);
+		while (i < n)
 		{
 			// printf("Current head: %d\n", state->a->head->val);
 			if (!(state->a->head->val & BIT(k)))
 			{
+				i++;
 				do_op(state, PB);
 			}
 			else
 				do_op(state, RA);			
-			i++;
 		}
 		
 		while (state->b->size)
