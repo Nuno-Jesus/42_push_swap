@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/08 13:27:11 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/08 15:10:36 by crypto           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ int	main(int argc, char **argv)
 		destroy_state(&state);
 
 	stack_fill(state.a, argv + 1, argc - 1);
+	print_stack(state.a, "A");	
 	if (is_sorted(state.a))
 		printf("Stack is sorted\n");
 	sort(&state);
