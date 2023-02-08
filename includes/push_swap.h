@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:40:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/29 18:15:59 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/08 14:48:44 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef enum e_operation
 typedef struct	s_node
 {
 	int				val;
-	int 			local_min;
+	int 			rank;
 	struct s_node	*next;
 	struct s_node	*prev;	
 }				t_node;
@@ -62,7 +62,6 @@ typedef struct	s_state
 {
 	t_stack	*a;
 	t_stack	*b;
-	int	local_minima;
 }				t_state;
 
 //!-------------------------------------------------
@@ -102,8 +101,6 @@ t_node	*new_node(int val);
 void	destroy_node(t_node **node);
 
 //!-------------------------------------------------
-
-void	calculate_local_minima(t_state *state);
 
 void	sort(t_state *state);
 

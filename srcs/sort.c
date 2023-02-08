@@ -6,132 +6,11 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 18:34:24 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/06 17:26:19 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/08 15:00:30 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
-/* 
-void	calculate_local_minima(t_state *state)
-{
-	size_t	i;
-	int		min;
-
-	i = 0;
-	state->a->head->local_min = MIN(state->a->head->val, state->a->head->next->val);
-	min = state->a->head->local_min;
-	state->local_minima = 1;
-	while (i < state->a->size)
-	{
-		if (state->a->head->val < min)
-		{
-			min = state->a->head->val;
-			state->local_minima++;
-		}
-		state->a->head->local_min = min;
-		state->a->head = state->a->head->next;
-		i++;
-	}
-}
-
-void	transfer_local_chunk_to_b(t_state *state)
-{
-	int	min;
-
-	min = state->a->head->local_min;
-	while (state->a->size)
-	{
-		if (min != state->a->head->local_min)
-			break;
-		do_op(state, PB);		
-	}
-}
-
-size_t	find_absolute_maximum(t_stack *b)
-{
-	size_t	i;
-	int		max;
-	int		index;
-
-	i = 0;
-	index = 0;
-	max = INT_MIN;
-	while (i < b->size)
-	{
-		if (b->head->val > max)
-		{
-			max = b->head->val;
-			index = i;
-		}
-		b->head = b->head->next;
-		i++;
-	}
-	// printf("Absolute maximum: %d (%d)\n", max, index);
-	return (index);
-}
-
-void	transfer_local_chunk_to_a(t_state *state)
-{
-	size_t	i;
-	size_t	index;
-
-	while (state->b->size)
-	{
-		i = -1;
-		index = find_absolute_maximum(state->b);		
-		if (index >= state->b->size / 2 && index != 0)
-			while (++i < state->b->size - index)
-				do_op(state, RRB);
-		else if (index < state->b->size / 2 && index != 0)
-			while (++i < index)
-				do_op(state, RB);
-		do_op(state, PA);
-	}
-}
-
-void rotate_local_chunk(t_state *state)
-{
-	int min;
-	size_t i;
-
-	i = -1;
-	min = state->a->head->local_min;
-	while (state->a->head->local_min == min && ++i < state->a->size)
-		do_op(state, RA);
-}
-
-void	sort(t_state *state)
-{
-	while (1)
-	{
-		while (state->a->head->next->val > state->a->head->val && 
-			state->a->head->next->val > state->a->head->prev->val)
-			do_op(state, RRA);
-		if (is_sorted(state->a))
-			break;
-		while (state->a->head->val > state->a->head->prev->val)
-			do_op(state, RA);
-		if (is_sorted(state->a))
-			break;
-		while (state->a->head->val > state->a->head->next->val)
-			do_op(state, SA);
-		if (is_sorted(state->a))
-			break;
-		calculate_local_minima(state);
-		// print_stack(state->a, "A");
-		transfer_local_chunk_to_b(state);
-		// print_stack(state->a, "A");
-		// print_stack(state->b, "B");
-		transfer_local_chunk_to_a(state);
-		if (is_sorted(state->a))
-			break;
-		// print_stack(state->a, "A");
-		// print_stack(state->b, "B");
-		rotate_local_chunk(state);
-		// print_stack(state->a, "A");		
-	}
-}
- */
 
 int	find_absolute_maximum(t_stack *a)
 {
@@ -178,6 +57,42 @@ int	count_numbers_with_0_bit(t_stack *a, int n)
 	return (ret);
 }
 
+t_node	*get_next_min(t_stack *a, long prev_min)
+{
+	size_t	i;
+	long	curr_min;
+	t_node	*ret;
+	t_node	*aux;
+	
+	i = -1;
+	aux = a->head;
+	curr_min = (long)LONG_MAX;
+	while (++i < a->size)
+	{
+		if (aux->val < curr_min && aux->rank == 0)
+			ret = aux;			
+		aux = aux->next;
+	}
+	return (ret);
+}
+
+void	apply_rankings(t_stack *a)
+{
+	size_t	i;
+	long	prev_min;
+	t_node	*min;
+
+	i = 0;
+	prev_min = (long)LONG_MIN;
+	while (++i <= a->size)
+	{
+		min = get_next_min(a, prev_min);
+		printf("prev/current = %ld/%d -> rank %zu\n", prev_min, min->val, i);
+		min->rank = i;
+		prev_min = min->val;
+	}
+}
+
 void	sort(t_state *state)
 {
 	int bits;
@@ -188,7 +103,10 @@ void	sort(t_state *state)
 
 	k = -1;
 	size = state->a->size;
+	
 	bits = count_bits(find_absolute_maximum(state->a));
+	apply_rankings(state->a);
+	print_stack(state->a, "A");
 	// printf("Count bits: %d\n", bits);
 	while (++k < bits)
 	{

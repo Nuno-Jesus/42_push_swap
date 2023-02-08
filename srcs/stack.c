@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 23:46:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/29 18:38:04 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/08 13:40:46 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ void	print_stack(t_stack *stack, char *name)
 	printf("(%s) Head -> Bottom (Size : %zu)\n", name, stack->size);
 	for (size_t i = 0; i < stack->size; i++, aux = aux->next)
 	{
-		print_bits(aux->val);
-		printf(" -> [%d]\n", aux->val);
+		//print_bits(aux->val);
+		printf(" -> [%d] [Rank %d]\n", aux->val, aux->rank);
 	}
 	puts("");
 	/* 
