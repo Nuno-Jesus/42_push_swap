@@ -7,7 +7,7 @@ min = - max - 1
 random.seed()
 i = 0
 
-while i < 500:
+while i < 100:
 	n = random.randint(min, max)
 	
 	if n not in numbers:

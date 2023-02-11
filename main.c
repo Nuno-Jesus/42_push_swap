@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/11 18:34:45 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/11 19:33:07 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,11 +126,9 @@ int	main(int argc, char **argv)
 		destroy_state(&state);
 
 	stack_fill(state.a, argv + 1, argc - 1);
-	// print_stack(state.a, "A");	
 	if (is_sorted(state.a))
 		printf("Stack is sorted\n");
 	sort(&state);
-	// print_stack(state.a, "A");
 	destroy_state(&state);
 	return (0);
 }

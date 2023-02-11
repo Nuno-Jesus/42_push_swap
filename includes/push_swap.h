@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:40:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/11 18:41:05 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/11 22:23:12 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@
 
 # define MAX(a, b) ((a > b) ? (a) : (b))
 # define MIN(a, b) ((a < b) ? (a) : (b))
+# define ABS(x) ((x < 0) ? (-x) : (x))
 # define BIT(i) (1 << i)
+// # define DEBUG
 
 typedef enum e_operation
 {
@@ -47,6 +49,8 @@ typedef struct	s_node
 {
 	int				val;
 	int 			rank;
+	bool			has_negative_rank;
+	bool			was_first;
 	struct s_node	*next;
 	struct s_node	*prev;	
 }				t_node;

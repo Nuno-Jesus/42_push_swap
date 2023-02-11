@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:59:09 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/22 20:10:31 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/11 20:42:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_node	*new_node(int val)
 	if (!node)
 		return (node);
 	node->val = val;
+	node->rank = -1;
 	return (node);
 }
 

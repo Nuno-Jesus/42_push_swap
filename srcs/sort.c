@@ -6,27 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 18:34:24 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/11 18:34:36 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/11 22:27:17 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
-
-int	find_absolute_maximum(t_stack *a)
-{
-	int	i;
-	int		max;
-
-	i = -1;
-	max = INT_MIN;
-	while (++i < a->size)
-	{
-		max = MAX(max, a->head->val);
-		a->head = a->head->next;
-	}
-	printf("Absolute maximum: %d\n", max);
-	return (max);
-}
 
 int	count_bits(int n)
 {
@@ -36,22 +20,6 @@ int	count_bits(int n)
 	while (n >> bits)
 		bits++;
 	return (bits);
-}
-
-int	count_numbers_with_0_bit(t_stack *a, int n)
-{
-	int		ret;
-	int	i;
-
-	i = -1;
-	ret = 0;
-	while (++i < a->size)
-	{
-		if (!(a->head->rank & BIT(n)))
-			ret++;		
-		a->head = a->head->next;
-	}
-	return (ret);
 }
 
 t_node	*get_next_min(t_stack *a)
@@ -65,7 +33,7 @@ t_node	*get_next_min(t_stack *a)
 	ret = NULL;
 	while (++i < a->size)
 	{
-		if (aux->rank == 0 && (!ret || aux->val < ret->val))
+		if (aux->rank == -1 && (!ret || aux->val < ret->val))
 			ret = aux;			
 		aux = aux->next;
 	}
@@ -78,52 +46,155 @@ void	apply_rankings(t_stack *a)
 	t_node	*min;
 
 	i = 0;
-	while (++i <= a->size)
+	while (i < a->size)
 	{
 		min = get_next_min(a);
-		min->rank = i;
+		min->rank = ABS(i);
+		min->has_negative_rank = (i++ < 0);
 	}
 }
 
-int	find_next_zero(t_stack *a, int n)
+t_operation	find_next_negative(t_stack *a)
 {
-	int i;
+	int		i;
+	t_node	*node;
 
-	i = 0;
-	while (i < a->size)
+	node = a->head;
+	i = -1;
+	while (++i < a->size)
 	{
-		if (!(a->head->rank & BIT(n)))
-			return (i);
+		if (node->has_negative_rank)
+			break;
+		node = node->next;
 	}
-	return (-1);
+	if (i < a->size / 2)
+		return (RA);
+	else
+		return (RRA);
+}
+
+
+void	move_negatives(t_state *state)
+{
+	int	i;
+	int	neg;
+	
+	i = -1;
+	neg = 0;
+	while (++i < state->a->size)
+	{
+		if (state->a->head->has_negative_rank)
+			neg++;
+		state->a->head = state->a->head->next;
+	}
+	// printf("Negative ranks: %d\n", neg);
+	while (neg--)
+	{
+		// print_stack(state->a, "A");
+		while (!state->a->head->has_negative_rank)
+			do_op(state, find_next_negative(state->a));
+		do_op(state, PB);
+	}	
+}
+
+int	count_zero_bits(t_stack *a, int k)
+{
+	int		i;
+	int		count;
+	t_node	*node;
+
+	i = -1;
+	count = 0;
+	node = a->head;
+	while (++i < a->size)
+	{
+		if (!(node->rank & BIT(k)))
+			count++;
+		node = node->next;
+	}
+	return (count);
+}
+
+t_operation	find_next_zero_bit(t_stack *a, int k)
+{
+	int		i;
+	t_node	*node;
+
+	node = a->head;
+	i = -1;
+	while (++i < a->size)
+	{
+		if (!(node->rank & BIT(k)))
+			break;
+		node = node->next;
+	}
+	if (i < a->size / 2)
+		return (RA);
+	else
+		return (RRA);
+}
+
+void	set_first(t_stack *a, int k)
+{
+	int		i;
+	t_node	*node;
+
+	i = -1;
+	node = a->head;
+	while (++i < a->size)
+	{
+		if (node->rank & BIT(k))
+		{
+			node->was_first = true;
+			return;
+		}
+		node = node->next;
+	}
+}
+
+t_operation	find_old_first(t_stack *a)
+{
+	int		i;
+	t_node	*node;
+
+	node = a->head;
+	i = -1;
+	while (++i < a->size)
+	{
+		if (node->was_first)
+			break;
+		node = node->next;
+	}
+	if (i < a->size / 2)
+		return (RA);
+	else
+		return (RRA);
+}
+
+void	print_state(t_state *state)
+{
+	print_stack(state->a, "A");
+	print_stack(state->b, "B");
 }
 
 void	sort(t_state *state)
 {
-	int bits;
-	int i;
 	int k;
-	int size;
+	int bits;
 
 	k = -1;
-	size = state->a->size;
 	bits = count_bits(state->a->size);
-	// printf("Count bits: %d\n", bits);
+	#ifdef DEBUG
+		printf("Count bits: %d\n", bits);
+	#endif
+	
+	int size = state->a->size;
+	
 	apply_rankings(state->a);
-	// print_stack(state->a, "A");
+	// move_negatives(state);
 	while (++k < bits && !is_sorted(state->a))
 	{
-		/* if (state->a->head->next->val > state->a->head->val && 
-			state->a->head->next->val > state->a->head->prev->val)
-			do_op(state, RRA);
-		if (state->a->head->val > state->a->head->prev->val)
-			do_op(state, RA);
-		if (state->a->head->val > state->a->head->next->val)
-			do_op(state, SA);
-		if (is_sorted(state->a))
-			break; */
-		i = -1;
-		// printf("Numbers with 0 on the  %d position: %d\n", k, n);
+		int i = 0;
 		while (++i < size)
 		{
 			// printf("Current head: %d\n", state->a->head->val);
@@ -137,9 +208,21 @@ void	sort(t_state *state)
 				do_op(state, RA);	
 			// print_stack(state->a, "A");		
 		}
-		
-		// print_stack(state->b, "B");
 		while (state->b->size)
-			do_op(state, PA);
+			do_op(state, PA); 
 	}
+	#ifdef DEBUG
+		printf("-------------- FINAL --------------\n");
+		print_state(state);
+	#endif
 }
+
+/* if (state->a->head->next->val > state->a->head->val && 
+			state->a->head->next->val > state->a->head->prev->val)
+			do_op(state, RRA);
+		if (state->a->head->val > state->a->head->prev->val)
+			do_op(state, RA);
+		if (state->a->head->val > state->a->head->next->val)
+			do_op(state, SA);
+		if (is_sorted(state->a))
+			break; */
