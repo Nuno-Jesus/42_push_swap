@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   operations_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 00:58:22 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/01/26 17:53:54 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/11 18:41:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate(t_stack *stack, char *op)
+void	rx(t_stack *stack, char *op)
 {
 	if (!stack->head)
 		return ;
@@ -23,12 +23,12 @@ void	rotate(t_stack *stack, char *op)
 
 void	rr(t_state *state)
 {
-	rotate(state->a, NULL);
-	rotate(state->b, NULL);
+	rx(state->a, NULL);
+	rx(state->b, NULL);
 	ft_putendl_fd("rr", STDOUT_FILENO);
 }
 
-void 	reverse(t_stack *stack, char *op)
+void 	rrx(t_stack *stack, char *op)
 {
 	if (!stack->head)
 		return ;
@@ -39,7 +39,7 @@ void 	reverse(t_stack *stack, char *op)
 
 void	rrr(t_state *state)
 {
-	reverse(state->a, NULL);
-	reverse(state->b, NULL);
+	rrx(state->a, NULL);
+	rrx(state->b, NULL);
 	ft_putendl_fd("rrr", STDOUT_FILENO);
 }

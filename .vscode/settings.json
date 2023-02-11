@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"*.pl": "prolog",
+		"concepts": "c",
+		"type_traits": "c"
+	}
+}

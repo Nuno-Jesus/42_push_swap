@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:40:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/11 14:47:13 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/11 18:41:05 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,17 +80,17 @@ void	print_stack(t_stack *stack, char *name);
 
 void	do_op(t_state *state, t_operation op);
 
-void	swap(t_stack *stack, char *op);
+void	sx(t_stack *stack, char *op);
 
 void	ss(t_state *state);
 
-void	push(t_stack *src, t_stack *dest, char *op);
+void	px(t_stack *src, t_stack *dest, char *op);
 
-void	rotate(t_stack *stack, char *op);
+void	rx(t_stack *stack, char *op);
 
 void	rr(t_state *state);
 
-void 	reverse(t_stack *stack, char *op);
+void 	rrx(t_stack *stack, char *op);
 
 void	rrr(t_state *state);
 
