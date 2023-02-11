@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:40:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/08 14:48:44 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/11 14:47:13 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ typedef struct	s_node
 
 typedef struct	s_stack
 {
-	size_t	size;
-	size_t	capacity;
+	int	size;
+	int	capacity;
 	t_node 	*head;
 }				t_stack;
 
@@ -66,7 +66,7 @@ typedef struct	s_state
 
 //!-------------------------------------------------
 
-t_stack	*new_stack(size_t capacity);
+t_stack	*new_stack(int capacity);
 
 void	stack_push(t_stack *stack, t_node *val);
 

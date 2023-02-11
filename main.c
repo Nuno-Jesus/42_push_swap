@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crypto <crypto@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/08 15:10:36 by crypto           ###   ########.fr       */
+/*   Updated: 2023/02/11 18:34:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ bool	valid_args(int argc, char **argv)
 
 bool	is_sorted(t_stack *stack)
 {
-	size_t	i;
+	int	i;
 	t_node	*aux;
 
 	i = -1;
@@ -113,7 +113,6 @@ int	main(int argc, char **argv)
 {
 	t_state	state;
 	
-	printf("Number of args: %d\n", argc);
 	if (argc < 2)
 		return (EXIT_FAILURE);
 	if (!valid_args(argc - 1, argv + 1))
@@ -127,11 +126,11 @@ int	main(int argc, char **argv)
 		destroy_state(&state);
 
 	stack_fill(state.a, argv + 1, argc - 1);
-	print_stack(state.a, "A");	
+	// print_stack(state.a, "A");	
 	if (is_sorted(state.a))
 		printf("Stack is sorted\n");
 	sort(&state);
-	print_stack(state.a, "A");
+	// print_stack(state.a, "A");
 	destroy_state(&state);
 	return (0);
 }

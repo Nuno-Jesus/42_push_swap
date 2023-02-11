@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 18:34:24 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/08 17:38:24 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/11 18:34:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	find_absolute_maximum(t_stack *a)
 {
-	size_t	i;
+	int	i;
 	int		max;
 
 	i = -1;
@@ -33,24 +33,21 @@ int	count_bits(int n)
 	int bits;
 
 	bits = 0;	
-	while (n)
-	{
-		n >>= 1;
+	while (n >> bits)
 		bits++;
-	}
 	return (bits);
 }
 
 int	count_numbers_with_0_bit(t_stack *a, int n)
 {
 	int		ret;
-	size_t	i;
+	int	i;
 
 	i = -1;
 	ret = 0;
 	while (++i < a->size)
 	{
-		if (!(a->head->val & BIT(n)))
+		if (!(a->head->rank & BIT(n)))
 			ret++;		
 		a->head = a->head->next;
 	}
@@ -59,7 +56,7 @@ int	count_numbers_with_0_bit(t_stack *a, int n)
 
 t_node	*get_next_min(t_stack *a)
 {
-	size_t	i;
+	int	i;
 	t_node	*ret;
 	t_node	*aux;
 	
@@ -77,35 +74,44 @@ t_node	*get_next_min(t_stack *a)
 
 void	apply_rankings(t_stack *a)
 {
-	size_t	i;
-	long	prev_min;
+	int	i;
 	t_node	*min;
 
 	i = 0;
-	prev_min = LONG_MIN;
 	while (++i <= a->size)
 	{
 		min = get_next_min(a);
 		min->rank = i;
-		prev_min = min->val;
 	}
+}
+
+int	find_next_zero(t_stack *a, int n)
+{
+	int i;
+
+	i = 0;
+	while (i < a->size)
+	{
+		if (!(a->head->rank & BIT(n)))
+			return (i);
+	}
+	return (-1);
 }
 
 void	sort(t_state *state)
 {
 	int bits;
 	int i;
-	int n;
 	int k;
-	// size_t size;
+	int size;
 
 	k = -1;
-	// size = state->a->size;
-	bits = count_bits(find_absolute_maximum(state->a));
-	apply_rankings(state->a);
-	print_stack(state->a, "A");
+	size = state->a->size;
+	bits = count_bits(state->a->size);
 	// printf("Count bits: %d\n", bits);
-	while (++k < bits)
+	apply_rankings(state->a);
+	// print_stack(state->a, "A");
+	while (++k < bits && !is_sorted(state->a))
 	{
 		/* if (state->a->head->next->val > state->a->head->val && 
 			state->a->head->next->val > state->a->head->prev->val)
@@ -116,23 +122,24 @@ void	sort(t_state *state)
 			do_op(state, SA);
 		if (is_sorted(state->a))
 			break; */
-		i = 0;
-		n = count_numbers_with_0_bit(state->a, k);
-		printf("Numbers with (1 << %d): %d\n", bits, n);
-		while (i < n)
+		i = -1;
+		// printf("Numbers with 0 on the  %d position: %d\n", k, n);
+		while (++i < size)
 		{
 			// printf("Current head: %d\n", state->a->head->val);
-			if (!(state->a->head->val & BIT(k)))
+			if (!(state->a->head->rank & BIT(k)))
 			{
-				i++;
+				// i++;
 				do_op(state, PB);
+				// printf("Pushed %d numbers so far.\n", i);
 			}
 			else
-				do_op(state, RA);			
+				do_op(state, RA);	
+			// print_stack(state->a, "A");		
 		}
 		
+		// print_stack(state->b, "B");
 		while (state->b->size)
 			do_op(state, PA);
-		// print_stack(state->a, "A");
 	}
 }

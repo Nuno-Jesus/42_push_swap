@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 23:46:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/08 17:35:22 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/11 15:05:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*new_stack(size_t capacity)
+t_stack	*new_stack(int capacity)
 {
 	t_stack	*stack;
 
@@ -66,10 +66,10 @@ t_node*	stack_pop(t_stack *stack)
 
 void	print_bits(unsigned char n)
 {
-	int i = 1 << 8;
+	unsigned long i = 1L << 32;
 	
 	while (i >>= 1)
-		(n & i) ? write(1, "1", 1) : write(1, "0", 1);
+		(n & i) ? printf("1") : printf("0");
 }
 
 void	print_stack(t_stack *stack, char *name)
@@ -79,11 +79,11 @@ void	print_stack(t_stack *stack, char *name)
 	t_node *aux;
 	
 	aux = stack->head;
-	printf("(%s) Head -> Bottom (Size : %zu)\n", name, stack->size);
-	for (size_t i = 0; i < stack->size; i++, aux = aux->next)
+	printf("(%s) Head -> Bottom (Size : %d)\n", name, stack->size);
+	for (int i = 0; i < stack->size; i++, aux = aux->next)
 	{
-		print_bits(aux->val);
-		printf(" -> [%8d] [Rank %d]\n", aux->val, aux->rank);
+		print_bits(aux->rank);
+		printf(" -> [Rank %5d]\n", aux->rank);
 	}
 	puts("");
 	/* 
