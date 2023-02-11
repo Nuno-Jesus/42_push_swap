@@ -1,6 +1,18 @@
 import random
-import os
+
+numbers = []
+max = 2**31 - 1
+min = - max - 1
 
 random.seed()
-for i in range(0, 500):
-	print(str(random.randint(-50000, 50000)) + " ", end="")
+i = 0
+
+while i < 500:
+	n = random.randint(min, max)
+	
+	if n not in numbers:
+		numbers.append(n)
+		i += 1
+
+for n in numbers:
+	print(str(n) + " ", end=' ')
