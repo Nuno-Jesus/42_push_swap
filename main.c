@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/15 14:53:37 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:31:32 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 int	main(int argc, char **argv)
 {
 	t_state	state;
-	
+
 	if (argc < 2)
 		return (EXIT_FAILURE);
 	if (!valid_args(argc - 1, argv + 1))
 	{
 		ft_putendl_fd("Error", STDERR_FILENO);
-		return (EXIT_FAILURE);	
+		return (EXIT_FAILURE);
 	}
 	state.a = new_stack(argc - 1);
 	state.b = new_stack(argc - 1);
@@ -29,7 +29,6 @@ int	main(int argc, char **argv)
 		destroy_state(&state);
 	stack_fill(state.a, argv + 1, argc - 1);
 	apply_rankings(state.a);
-
 	if (is_sorted(state.a))
 		return (EXIT_SUCCESS);
 	else if (state.a->size <= SMALL_SORT_THRESHOLD)
@@ -38,7 +37,6 @@ int	main(int argc, char **argv)
 		medium_sort_algorithm(&state);
 	else
 		big_sort_algorithm(&state);
-
 	destroy_state(&state);
 	return (EXIT_SUCCESS);
 }
