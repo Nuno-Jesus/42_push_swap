@@ -6,108 +6,11 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/15 14:15:22 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/15 14:53:37 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-bool	is_number(char *arg)
-{
-	if (*arg == '\0')
-		return (false);
-	// If the argument is negative, but not only a minus
-	if (*arg == '-' && ft_strlen(arg) > 1)
-		arg++;
-	//Check if the rest of the characters are only numeric
-	while (*arg)
-		if (!ft_isdigit(*(arg++)))
-			return (false);
-	return (true);
-}
-
-bool	is_int(char *arg)
-{
-	int		signal;
-	long	res;
-
-	res = 0;
-	signal = 1;
-	if (*arg == '-')
-	{
-		signal = -1;
-		arg++;
-	}
-	while (ft_isdigit(*arg))
-		res = res * 10 + *(arg++) - '0';
-	res *= signal;		
-	return (res >= INT_MIN && res <= INT_MAX);
-}
-
-bool	is_duplicated(char **argv, int pos)
-{
-	int	i;
-	int	current;
-
-	i = 0;
-	current = ft_atoi(argv[pos]);
-	while (i < pos)
-	{
-		if (ft_atoi(argv[i++]) == current)
-			return (true);
-	}
-	return (false);
-}
-
-bool	valid_args(int argc, char **argv)
-{
-	int	i;
-
-	i = 0;
-	while (i < argc)
-	{
-		if (!is_number(argv[i]) || !is_int(argv[i]) || is_duplicated(argv, i))
-			return (false);		
-		i++;
-	}
-	return (true);
-}
-
-bool	is_sorted(t_stack *stack)
-{
-	int	i;
-	t_node	*aux;
-
-	i = -1;
-	aux = stack->head;
-	while (++i < stack->size - 1)
-	{
-		if (aux->val > aux->next->val)
-			return (false);
-		aux = aux->next;
-	}
-	return (true);
-}
-
-void	stack_fill(t_stack *stack, char **argv, int argc)
-{
-	int	i;
-
-	i = argc - 1;
-	while (i >= 0)
-		stack_push(stack, new_node(ft_atoi(argv[i--])));
-}
-
-//2147483647 -2147483648
-
-void	destroy_state(t_state *state)
-{
-	if (state->a)
-		destroy_stack(&state->a);
-	if (state->b)
-		destroy_stack(&state->b);
-	return ;
-}
 
 int	main(int argc, char **argv)
 {
@@ -117,7 +20,7 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (!valid_args(argc - 1, argv + 1))
 	{
-		ft_putendl_fd("Error", STDOUT_FILENO);
+		ft_putendl_fd("Error", STDERR_FILENO);
 		return (EXIT_FAILURE);	
 	}
 	state.a = new_stack(argc - 1);
@@ -126,20 +29,16 @@ int	main(int argc, char **argv)
 		destroy_state(&state);
 	stack_fill(state.a, argv + 1, argc - 1);
 	apply_rankings(state.a);
-	#ifdef DEBUG
-		print_state(&state);
-	#endif
+
 	if (is_sorted(state.a))
 		return (EXIT_SUCCESS);
 	else if (state.a->size <= SMALL_SORT_THRESHOLD)
-		small_sort(&state);
+		small_sort_algorithm(&state);
 	else if (state.a->size <= MEDIUM_SORT_THRESHOLD)
-		medium_sort(&state);
+		medium_sort_algorithm(&state);
 	else
-		big_sort(&state);
-	#ifdef DEBUG
-		print_state(&state);
-	#endif
+		big_sort_algorithm(&state);
+
 	destroy_state(&state);
 	return (EXIT_SUCCESS);
 }

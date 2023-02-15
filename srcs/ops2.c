@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations_2.c                                     :+:      :+:    :+:   */
+/*   ops2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 00:58:22 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/11 18:41:05 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/15 15:05:40 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	rr(t_state *state)
 	ft_putendl_fd("rr", STDOUT_FILENO);
 }
 
-void 	rrx(t_stack *stack, char *op)
+void	rrx(t_stack *stack, char *op)
 {
 	if (!stack->head)
 		return ;

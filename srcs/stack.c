@@ -6,11 +6,23 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 23:46:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/15 14:01:17 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/15 15:06:44 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+t_node	*new_node(int val)
+{
+	t_node	*node;
+
+	node = ft_calloc(1, sizeof(t_node));
+	if (!node)
+		return (node);
+	node->val = val;
+	node->rank = -1;
+	return (node);
+}
 
 t_stack	*new_stack(int capacity)
 {
@@ -29,24 +41,24 @@ void	stack_push(t_stack *stack, t_node *node)
 		return ;
 	if (!stack->head)
 	{
-		stack->head = node;		//Stack head -> node
-		stack->head->next = node;				//Replace stack head		
-		stack->head->prev = node;				//Replace stack head		
+		stack->head = node;
+		stack->head->next = node;
+		stack->head->prev = node;
 		stack->size++;
 		return ;
 	}
-	node->next = stack->head;		//Node -> stack head
-	stack->head->prev->next = node;	//Last element -> node
-	node->prev = stack->head->prev;	//Node -> Last element
-	stack->head->prev = node;		//Stack head -> node
-	stack->head = node;				//Replace stack head
+	node->next = stack->head;
+	stack->head->prev->next = node;
+	node->prev = stack->head->prev;
+	stack->head->prev = node;
+	stack->head = node;
 	stack->size++;
 }
 
-t_node*	stack_pop(t_stack *stack)
+t_node	*stack_pop(t_stack *stack)
 {
 	t_node	*aux;
-	
+
 	if (!stack)
 		return (NULL);
 	else if (!stack->head)
@@ -54,63 +66,12 @@ t_node*	stack_pop(t_stack *stack)
 	aux = stack->head;
 	if (stack->size == 1)
 		stack->head = NULL;
-	else 
+	else
 	{
-		stack->head->prev->next = stack->head->next; //Put the last element pointing to the one after the head
-		stack->head->next->prev = stack->head->prev; //Put the next head pointing to the last element
-		stack->head = stack->head->next;			 //Promote the next head
+		stack->head->prev->next = stack->head->next;
+		stack->head->next->prev = stack->head->prev;
+		stack->head = stack->head->next;
 	}
 	stack->size--;
 	return (aux);
-}
-
-void	print_bits(unsigned char n)
-{
-	unsigned long i = 1L << 32;
-	
-	while (i >>= 1)
-		(n & i) ? printf("1") : printf("0");
-}
-
-void	print_stack(t_stack *stack, char *name)
-{
-	if (!stack->size)
-		return ;
-	t_node *aux;
-	
-	aux = stack->head;
-	printf("(%s) Head -> Bottom (Size : %d)\n", name, stack->size);
-	for (int i = 0; i < stack->size; i++, aux = aux->next)
-	{
-		print_bits(aux->rank);
-		printf(" -> [Rank %5d]\n", aux->rank);
-	}
-	puts("");
-	/* 
-	aux = stack->head->prev;
-	printf("Bottom -> Head\n");
-	for (size_t i = 0; i < stack->size; i++, aux = aux->prev)
-		printf("[%d]\n", aux->val);
-	puts(""); */
-}
-
-void	destroy_stack(t_stack **stack)
-{
-	t_node	*aux;
-	
-	aux = (*stack)->head;
-	if (!(*stack))
-		return ;
-	if ((*stack)->head)
-	{
-		(*stack)->head->prev->next = NULL;
-		while (aux)
-		{
-			(*stack)->head = (*stack)->head->next;
-			destroy_node(&aux);
-			aux = (*stack)->head;
-		}
-	}
-	free(*stack);
-	*stack = NULL;			
 }

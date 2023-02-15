@@ -28,7 +28,8 @@ LIBFT_PATH	= libft
 GNL_PATH	= get_next_line
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FILES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-OBJS			= stack.o operations_1.o operations_2.o node.o sort.o
+OBJS			= algorithms.o args_validator.o debug.o destroy.o ops1.o \
+					ops2.o utils.o stack.o  
 OBJS_BONUS		= 
 NAME			= push_swap
 NAME_BONUS		= checker

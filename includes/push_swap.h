@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:40:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/15 14:23:47 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/15 14:46:55 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,22 +66,32 @@ typedef struct	s_state
 	t_stack	*b;
 }				t_state;
 
-//!-------------------------------------------------
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ STACK _/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 t_stack	*new_stack(int capacity);
+
+t_node	*new_node(int val);
 
 void	stack_push(t_stack *stack, t_node *val);
 
 t_node*	stack_pop(t_stack *stack);
 
-void	destroy_stack(t_stack **stack);
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ DEBUG _/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+
+void	print_bits(unsigned char n);
 
 void	print_stack(t_stack *stack, char *name);
 
 void	print_state(t_state *state);
 
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ DESTROY _/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+void	destroy_node(t_node **node);
 
-//!-------------------------------------------------
+void	destroy_stack(t_stack **stack);
+
+void	destroy_state(t_state *state);
+
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ PS_OPS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
 void	do_op(t_state *state, t_operation op);
 
@@ -99,24 +109,33 @@ void 	rrx(t_stack *stack, char *op);
 
 void	rrr(t_state *state);
 
-//!-------------------------------------------------
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ VALIDATOR _/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-t_node	*new_node(int val);
+bool	valid_args(int argc, char **argv);
 
-void	destroy_node(t_node **node);
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ ALGORITHMS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
-//!-------------------------------------------------
-
-void	small_sort(t_state *state);
-
-void	medium_sort(t_state *state);
-
-void	big_sort(t_state *state);
+bool	is_sorted(t_stack *stack);
 
 void	apply_rankings(t_stack *a);
 
+void	small_sort_algorithm(t_state *state);
 
-//!-------------------------------------------------
-bool	is_sorted(t_stack *stack);
+void	medium_sort_algorithm(t_state *state);
+
+void	big_sort_algorithm(t_state *state);
+
+//!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ PS_UTILS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_
+
+int		count_bits(int n);
+
+void	stack_fill(t_stack *stack, char **argv, int argc);
+
+t_node	*find_next_unranked_min(t_stack *a);
+
+int		find_stack_min(t_stack *stack);
+
+void	extract_min_to_b(t_state *state);
+
 
 #endif
