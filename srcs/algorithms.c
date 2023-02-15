@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 18:34:24 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/15 15:02:06 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:29:14 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	big_sort_algorithm(t_state *state)
 		i = -1;
 		while (++i < size)
 		{
-			if (!(state->a->head->rank & BIT(k)))
+			if (!(state->a->head->rank & (1 << k)))
 				do_op(state, PB);
 			else
 				do_op(state, RA);

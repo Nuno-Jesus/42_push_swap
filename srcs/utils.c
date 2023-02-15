@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 14:33:51 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/15 15:08:00 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:30:05 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ int	find_stack_min(t_stack *stack)
 	min = stack->head->rank;
 	while (++i < stack->size)
 	{
-		min = MIN(min, node->rank);
+		if (node->rank < min)
+			min = node->rank;
 		node = node->next;
 	}
 	return (min);

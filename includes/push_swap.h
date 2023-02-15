@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:40:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/15 14:46:55 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/15 16:30:08 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@
 
 # define SMALL_SORT_THRESHOLD 3
 # define MEDIUM_SORT_THRESHOLD 5
-# define BIT(i) (1 << i)
-# define MIN(a, b) ((a < b) ? (a) : (b))
-// # define DEBUG
 
 typedef enum e_operation
 {
@@ -45,26 +42,26 @@ typedef enum e_operation
 	RRR
 }			t_operation;
 
-typedef struct	s_node
+typedef struct s_node
 {
 	int				val;
-	int 			rank;
+	int				rank;
 	struct s_node	*next;
 	struct s_node	*prev;	
-}				t_node;
+}t_node;
 
-typedef struct	s_stack
+typedef struct s_stack
 {
-	int	size;
-	int	capacity;
-	t_node 	*head;
-}				t_stack;
+	int		size;
+	int		capacity;
+	t_node	*head;
+}t_stack;
 
-typedef struct	s_state
+typedef struct s_state
 {
 	t_stack	*a;
 	t_stack	*b;
-}				t_state;
+}t_state;
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ STACK _/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
@@ -74,7 +71,7 @@ t_node	*new_node(int val);
 
 void	stack_push(t_stack *stack, t_node *val);
 
-t_node*	stack_pop(t_stack *stack);
+t_node	*stack_pop(t_stack *stack);
 
 //!_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ DEBUG _/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 
@@ -105,7 +102,7 @@ void	rx(t_stack *stack, char *op);
 
 void	rr(t_state *state);
 
-void 	rrx(t_stack *stack, char *op);
+void	rrx(t_stack *stack, char *op);
 
 void	rrr(t_state *state);
 
@@ -136,6 +133,5 @@ t_node	*find_next_unranked_min(t_stack *a);
 int		find_stack_min(t_stack *stack);
 
 void	extract_min_to_b(t_state *state);
-
 
 #endif
