@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/11 19:33:07 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/15 14:15:22 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,11 +124,22 @@ int	main(int argc, char **argv)
 	state.b = new_stack(argc - 1);
 	if (!state.a || !state.b)
 		destroy_state(&state);
-
 	stack_fill(state.a, argv + 1, argc - 1);
+	apply_rankings(state.a);
+	#ifdef DEBUG
+		print_state(&state);
+	#endif
 	if (is_sorted(state.a))
-		printf("Stack is sorted\n");
-	sort(&state);
+		return (EXIT_SUCCESS);
+	else if (state.a->size <= SMALL_SORT_THRESHOLD)
+		small_sort(&state);
+	else if (state.a->size <= MEDIUM_SORT_THRESHOLD)
+		medium_sort(&state);
+	else
+		big_sort(&state);
+	#ifdef DEBUG
+		print_state(&state);
+	#endif
 	destroy_state(&state);
-	return (0);
+	return (EXIT_SUCCESS);
 }

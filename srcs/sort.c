@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 18:34:24 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/13 15:59:05 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/15 14:22:46 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,48 +53,14 @@ void	apply_rankings(t_stack *a)
 	}
 }
 
-void	move_negatives(t_state *state)
-{
-	int	i;
-	int	neg;
-	
-	i = -1;
-	neg = 0;
-	while (++i < state->a->size)
-	{
-		if (state->a->head->has_negative_rank)
-			neg++;
-		state->a->head = state->a->head->next;
-	}
-	while (neg--)
-	{
-		while (!state->a->head->has_negative_rank)
-			do_op(state, find_next_negative(state->a));
-		do_op(state, PB);
-	}
-}
-
 void	print_state(t_state *state)
 {
 	print_stack(state->a, "A");
 	print_stack(state->b, "B");
 }
 
-void	sort(t_state *state)
+void	small_sort(t_state *state)
 {
-	int k;
-	int bits;
-
-	k = -1;
-	bits = count_bits(state->a->size);
-	#ifdef DEBUG
-		printf("Count bits: %d\n", bits);
-	#endif
-	
-	int size = state->a->size;
-	
-	apply_rankings(state->a);
-	// move_negatives(state);
 	if (state->a->head->next->val > state->a->head->val && 
 		state->a->head->next->val > state->a->head->prev->val)
 		do_op(state, RRA);
@@ -108,6 +74,74 @@ void	sort(t_state *state)
 		do_op(state, SA);
 	if (is_sorted(state->a))
 		return;
+}
+
+int	find_stack_min(t_stack *stack)
+{
+	int		i;
+	int		min;
+	t_node	*node;
+	
+	i = -1;
+	node = stack->head;
+	min = stack->head->rank;
+	while (++i < stack->size)
+	{
+		#ifdef DEBUG
+			printf("Found min: %d\n", min);
+			printf("Current node: %d\n", node->rank);
+		#endif
+		min = MIN(min, node->rank);
+		node = node->next;
+	}
+	return (min);
+}
+
+void	extract_min_to_b(t_state *state)
+{
+	int		min;
+	
+	min = find_stack_min(state->a);
+	#ifdef DEBUG
+		printf("Stack min: %d\n", min);
+	#endif
+	while (state->a->head->rank != min)
+	{
+		if (state->a->head->rank != min && state->a->head->next->rank != min)
+			do_op(state, RRA);
+		else
+			do_op(state, RA);
+	}
+	do_op(state, PB);
+}
+
+void	medium_sort(t_state *state)
+{
+	while (state->a->size > SMALL_SORT_THRESHOLD)
+	{
+		extract_min_to_b(state);
+		#ifdef DEBUG
+			print_state(state);
+		#endif
+	}
+	small_sort(state);
+	while (state->b->size)
+		do_op(state, PA);
+}
+
+void	big_sort(t_state *state)
+{
+	int k;
+	int bits;
+
+	k = -1;
+	bits = count_bits(state->a->size);
+	#ifdef DEBUG
+		printf("Count bits: %d\n", bits);
+	#endif
+	
+	int size = state->a->size;
+		
 	while (++k < bits && !is_sorted(state->a))
 	{
 		int i = -1;
@@ -126,5 +160,3 @@ void	sort(t_state *state)
 		print_state(state);
 	#endif
 }
-
-/*  */

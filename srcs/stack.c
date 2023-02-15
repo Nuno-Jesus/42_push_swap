@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 23:46:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/11 20:26:03 by marvin           ###   ########.fr       */
+/*   Updated: 2023/02/15 14:01:17 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	print_stack(t_stack *stack, char *name)
 	for (int i = 0; i < stack->size; i++, aux = aux->next)
 	{
 		print_bits(aux->rank);
-		printf(" -> [Rank %5d][%d]%s\n", aux->rank, aux->has_negative_rank, aux->was_first ? "[first]" : "");
+		printf(" -> [Rank %5d]\n", aux->rank);
 	}
 	puts("");
 	/* 

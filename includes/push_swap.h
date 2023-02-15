@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:40:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/13 15:52:24 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/15 14:23:47 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 
 # include "libft.h"
 
-# define MAX(a, b) ((a > b) ? (a) : (b))
-# define MIN(a, b) ((a < b) ? (a) : (b))
-# define ABS(x) ((x < 0) ? (-x) : (x))
+# define SMALL_SORT_THRESHOLD 3
+# define MEDIUM_SORT_THRESHOLD 5
 # define BIT(i) (1 << i)
+# define MIN(a, b) ((a < b) ? (a) : (b))
 // # define DEBUG
 
 typedef enum e_operation
@@ -49,8 +49,6 @@ typedef struct	s_node
 {
 	int				val;
 	int 			rank;
-	bool			has_negative_rank;
-	bool			was_first;
 	struct s_node	*next;
 	struct s_node	*prev;	
 }				t_node;
@@ -80,6 +78,9 @@ void	destroy_stack(t_stack **stack);
 
 void	print_stack(t_stack *stack, char *name);
 
+void	print_state(t_state *state);
+
+
 //!-------------------------------------------------
 
 void	do_op(t_state *state, t_operation op);
@@ -106,7 +107,14 @@ void	destroy_node(t_node **node);
 
 //!-------------------------------------------------
 
-void	sort(t_state *state);
+void	small_sort(t_state *state);
+
+void	medium_sort(t_state *state);
+
+void	big_sort(t_state *state);
+
+void	apply_rankings(t_stack *a);
+
 
 //!-------------------------------------------------
 bool	is_sorted(t_stack *stack);

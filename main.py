@@ -15,4 +15,4 @@ while i < 100:
 		i += 1
 
 for n in numbers:
-	print(str(n) + " ", end=' ')
+	print(str(n), end=' ')
