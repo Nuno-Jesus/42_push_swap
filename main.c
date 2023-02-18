@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 04:55:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/15 16:31:32 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/18 15:15:05 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,7 @@ int	main(int argc, char **argv)
 		destroy_state(&state);
 	stack_fill(state.a, argv + 1, argc - 1);
 	apply_rankings(state.a);
-	if (is_sorted(state.a))
-		return (EXIT_SUCCESS);
-	else if (state.a->size <= SMALL_SORT_THRESHOLD)
-		small_sort_algorithm(&state);
-	else if (state.a->size <= MEDIUM_SORT_THRESHOLD)
+	if (state.a->size <= MEDIUM_SORT_THRESHOLD)
 		medium_sort_algorithm(&state);
 	else
 		big_sort_algorithm(&state);

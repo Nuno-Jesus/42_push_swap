@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:40:23 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/15 16:30:08 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/18 14:55:23 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include "libft.h"
 
 # define SMALL_SORT_THRESHOLD 3
-# define MEDIUM_SORT_THRESHOLD 5
+# define MEDIUM_SORT_THRESHOLD 20
 
 typedef enum e_operation
 {
