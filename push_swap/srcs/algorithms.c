@@ -6,7 +6,7 @@
 /*   By: ncarvalh <ncarvalh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 18:34:24 by ncarvalh          #+#    #+#             */
-/*   Updated: 2023/02/15 16:29:14 by ncarvalh         ###   ########.fr       */
+/*   Updated: 2023/02/19 18:17:15 by ncarvalh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	small_sort_algorithm(t_state *state)
 
 void	medium_sort_algorithm(t_state *state)
 {
+	if (is_sorted(state->a))
+		return ;
 	while (state->a->size > SMALL_SORT_THRESHOLD)
 		extract_min_to_b(state);
 	small_sort_algorithm(state);
