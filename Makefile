@@ -11,7 +11,7 @@ WHITE 	= \033[1;37m
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ COMMANDS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 CC = cc
-RM = rm -f
+RM = rm -rf
 AR = ar -rcs
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FLAGS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
@@ -23,23 +23,25 @@ GNL			= -L ./get_next_line -lgnl
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FOLDERS _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 DEPS		= includes 
 SRCS		= srcs
+SUBDIR		= 
+VPATH 		= srcs $(addprefix $(SRCS)/, $(SUBDIR))
 SRCS_BONUS	= srcs_bonus
 LIBFT_PATH	= libft
 GNL_PATH	= get_next_line
+OBJ_DIR 	= obj
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ FILES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
-OBJS			= algorithms.o args_validator.o debug.o destroy.o ops1.o \
+FILES			= algorithms.o args_validator.o debug.o destroy.o ops1.o \
 					ops2.o utils.o stack.o  
-OBJS_BONUS		= 
 NAME			= push_swap
 NAME_BONUS		= checker
-TARGET			= $(addprefix $(SRCS)/, $(OBJS))
+TARGET			= $(addprefix $(OBJ_DIR)/, $(FILES))
 TARGET_BONUS	= $(addprefix $(SRCS_BONUS)/, $(OBJS_BONUS))
 
 #_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_ RULES _/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_/=\_
 all: $(NAME)
 
-$(NAME): $(TARGET)
+$(NAME): $(OBJ_DIR) $(TARGET)
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)libft/*$(RESET)"
 	make $(MKFLAGS) -C $(LIBFT_PATH)
 		
@@ -48,19 +50,23 @@ $(NAME): $(TARGET)
 	
 	echo "$(GREEN)Done.$(RESET)"
 	
-%.o : %.c 
+$(OBJ_DIR)/%.o: %.c 
 	echo "[$(CYAN)Compiling$(RESET)] $(CFLAGS) $(GREEN)$<$(RESET)"
 	$(CC) $(CFLAGS) -c $< -o $@ -I $(DEPS)
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
 clean:
 	make clean $(MKFLAGS) -C $(LIBFT_PATH)
 	echo "[$(RED) Deleted $(RESET)] $(GREEN)*/*.o$(RESET)"
 	$(RM) $(TARGET)
+	$(RM) $(OBJ_DIR)
 
 fclean: clean
 	make fclean $(MKFLAGS) -C $(LIBFT_PATH)
 	echo "[$(RED) Deleted $(RESET)] $(GREEN) $(NAME) $(RESET)"
-	$(RM) $(NAME) 
+	$(RM) $(NAME)
 
 bonus: $(NAME_BONUS)
 
